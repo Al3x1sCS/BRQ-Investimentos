@@ -178,17 +178,22 @@ class ExchangeViewController: BaseViewController {
     @objc func sellTapped(sender: UIButton) {
         guard let user = balanceModel,
               let currency = viewExchangeModel?.coin,
+              let coinSell = currency.sell,
               let viewExchangeModel = viewExchangeModel,
               let coinSigla = viewExchangeModel.coin.sigla,
               let stringInputAmount = exchangeView.amountLabel.text,
               let intInputAmount = Int(stringInputAmount) else { return }
         
         let coinName = viewExchangeModel.coin.name
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "BRL"
+        let total = String(formatter.string(from: NSNumber(value: (coinSell)*(Double(intInputAmount))))!)
         
         user.transactions("sell", quantity: intInputAmount, coinSigla, currency)
         exchangeView.balanceLabel.text = "Saldo disponível: \(user.balanceLabelFormated)"
         exchangeView.cashierLabel.text = "\(String(user.userWallet[coinSigla] ?? 0)) \(coinName) em caixa"
-        message = "Parabéns!\nVocê acabou de vender\n\(intInputAmount) \(coinSigla) - \(coinName),\n totalizando\n\(user.balanceLabelFormated)"
+        message = "Parabéns!\nVocê acabou de vender\n\(intInputAmount) \(coinSigla) - \(coinName),\n totalizando\n\(total)"
         buyAndSellNavigation(title: "Venda")
     }
     
@@ -196,17 +201,22 @@ class ExchangeViewController: BaseViewController {
     @objc func buyTapped(sender: UIButton) {
         guard let user = balanceModel,
               let currency = viewExchangeModel?.coin,
+              let coinBuy = currency.buy,
               let viewExchangeModel = viewExchangeModel,
               let coinSigla = viewExchangeModel.coin.sigla,
               let stringInputAmount = exchangeView.amountLabel.text,
               let intInputAmount = Int(stringInputAmount) else { return }
         
         let coinName = viewExchangeModel.coin.name
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "BRL"
+        let total = String(formatter.string(from: NSNumber(value: (coinBuy)*(Double(intInputAmount))))!)
         
         user.transactions("buy", quantity: intInputAmount, coinSigla, currency)
         exchangeView.balanceLabel.text = "Saldo disponível: \(user.balanceLabelFormated)"
         exchangeView.cashierLabel.text = "\(String(user.userWallet[coinSigla] ?? 0)) \(coinName) em caixa"
-        message = "Parabéns!\nVocê acabou de\ncomprar \(intInputAmount) \(coinSigla) - \n\(coinName), totalizando\n\(user.balanceLabelFormated)"
+        message = "Parabéns!\nVocê acabou de\ncomprar \(intInputAmount) \(coinSigla) - \n\(coinName), totalizando\n\(total)"
         buyAndSellNavigation(title: "Compra")
     }
     
@@ -222,14 +232,10 @@ extension ExchangeViewController {
         
         let keyboardTopY = keyboardFrame.cgRectValue.origin.y
         let convertedTextFieldFrame = view.convert(currentTextField.frame, from: currentTextField.superview)
-        let textFieldBottomY = convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
-
-        if textFieldBottomY > keyboardTopY {
-            let textBoxY = convertedTextFieldFrame.origin.y
-            let newFrameY = (textBoxY - keyboardTopY / 2) * -1.2
-            view.frame.origin.y = newFrameY
-        }
-
+        
+        let textBoxY = convertedTextFieldFrame.origin.y
+        let newFrameY = (textBoxY - keyboardTopY / 2) * -1.4
+        view.frame.origin.y = newFrameY
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
