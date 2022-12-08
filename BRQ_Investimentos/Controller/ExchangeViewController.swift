@@ -24,6 +24,7 @@ class ExchangeViewController: BaseViewController {
     override func loadView() {
         super.loadView()
         view = exchangeView
+        //TODO: responsabilidade da view
         view.backgroundColor = .black
     }
     
@@ -34,7 +35,7 @@ class ExchangeViewController: BaseViewController {
         balanceModel = BalanceModel()
         setupNavigation(with: "Câmbio")
         exchangeView.setupView()
-        
+        //TODO: addTarget deve ser responsa da viewModle ou da view, verificar.
         exchangeView.amountLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
         exchangeView.sellButton.addTarget(self, action: #selector(sellTapped), for: .touchUpInside)
@@ -52,7 +53,9 @@ class ExchangeViewController: BaseViewController {
         settingSellButtons()
         settingBuyButtons()
     }
-    
+    //TODO: - verificar se todas as func vão virar viewModel, ou seja, devo estudar mais sobre a responsa da viewModel
+    //TODO: no geral verificar por que tem privates func e outras não privadas
+    //TODO: verificar se esta no lugar correto
     // MARK: setupKeyboardHiding
     private func setupKeyboardHiding() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -221,7 +224,7 @@ class ExchangeViewController: BaseViewController {
     }
     
 }
-
+//TODO: verificar se n é responsa da viewmodel
 // MARK: - Extensions
 extension ExchangeViewController {
     
@@ -242,7 +245,7 @@ extension ExchangeViewController {
         view.frame.origin.y = 0
     }
 }
-
+//TODO: verificar a possibilidade de mudar isso la pra o sceneDelegate e se é certo ou não
 // MARK: UIResponder
 extension UIResponder {
 

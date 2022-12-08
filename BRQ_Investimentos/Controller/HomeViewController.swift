@@ -31,11 +31,11 @@ class HomeViewController: BaseViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //TODO: sera mesmo que é responsabilidade da controller atribuir um nome a tela? verificar a possibilidade de passar isso pra view.
         setupNavigation(with: "Moedas")
         homeView.setupView()
         
-        
+        //TODO: estudar mais pra saber se esta correto esses delegates no viewDidLoad
         homeView.collectionView.dataSource = self
         homeView.collectionView.delegate = self
         buyAndSellVC.delegate = self
@@ -46,7 +46,7 @@ class HomeViewController: BaseViewController {
         viewHomeModel = HomeModel(delegate: self)
         self.tabBarController?.navigationItem.hidesBackButton = true
     }
-    
+    //TODO: verificar se é responsabilidade da view model
     // MARK: variationColor
     private func variationColor(indexPath: Int) -> UIColor {
         
@@ -80,7 +80,7 @@ extension HomeViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CoinCell", for: indexPath) as! CoinsViewCell
         
         cell.coinLabel.text = viewHomeModel?.coins[indexPath.row].sigla
-        
+        //TODO: verificar a posibilidade disso ser responsa da viewmodel
         if let variation = viewHomeModel?.coins[indexPath.row].variation {
             cell.variationLabel.text = "\(String(format: "%.2f", variation))%"
         }
@@ -99,6 +99,7 @@ extension HomeViewController: UICollectionViewDelegate {
         if let coin = viewHomeModel?.coins[indexPath.row] {
             exchangeVC.viewExchangeModel = ExchangeModel(coin: coin)
         }
+        //TODO: verificar se tem que chamar o coordinator aki
         self.navigationController?.pushViewController(exchangeVC, animated: true)
     }
     

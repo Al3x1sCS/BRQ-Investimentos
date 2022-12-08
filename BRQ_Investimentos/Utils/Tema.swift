@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+//TODO: adicionar mais cores e padronizar os nomes inclusive a possibilidade de trabalhar com classe e pesquisar mais sobre cores como Assets
 extension UIColor {
     
     static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {

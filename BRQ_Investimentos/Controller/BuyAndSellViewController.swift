@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+//TODO: verificar se o lugar dos protocolos e no topo da classe ou em outro lugar
 protocol BuyAndSellProtocol {
     func currency(user: BalanceModel)
 }
@@ -29,6 +29,7 @@ class BuyAndSellViewController: BaseViewController {
     override func loadView() {
         super.loadView()
         view = buyAndSellView
+        //TODO: responsabilidade da view tambem
         view.backgroundColor = .black
     }
     
@@ -39,6 +40,7 @@ class BuyAndSellViewController: BaseViewController {
         balanceModel = BalanceModel()
         buyAndSellView.setupView()
         titleVerified()
+        //TODO: addTarget deve ser responsa da viewModle ou da view, verificar tambem.
         buyAndSellView.homeButton.addTarget(self, action: #selector(homeTapped), for: .touchUpInside)
     }
     
@@ -59,6 +61,7 @@ class BuyAndSellViewController: BaseViewController {
     @objc func homeTapped(sender: UIButton) {
         let balanceModel = BalanceModel()
         delegate?.currency(user: self.balanceModel ?? balanceModel)
+        //TODO: verificar se tem que fazer referencia a coordenator
         self.navigationController?.popToRootViewController(animated: true)
     }
     

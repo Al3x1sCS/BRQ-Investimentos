@@ -28,7 +28,7 @@ class BaseViewController: UIViewController {
     }
     
 }
-
+//TODO: isto pode ser uma extension em arquivo separado
 // MARK: - Extensions
 extension UITextField {
     

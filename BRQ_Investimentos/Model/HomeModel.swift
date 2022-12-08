@@ -22,7 +22,7 @@ class HomeModel {
         self.delegate = delegate
         getCoins()
     }
-    
+    //TODO: verificar se vira um viewModel
     private func getCoins() {
         service.getData { result, failure in
             guard let result = result else { return }

@@ -24,6 +24,7 @@ class HGFinanceService: ExchangeServiceDelegate {
                 completion(success, nil)
             case .failure(_):
                 print("ERROR -> \(#function)")
+                //TODO: bela tratativa de erro parabains, devo estudar mais sobre tratar erros de api
                 completion(nil, nil)
                 
             }

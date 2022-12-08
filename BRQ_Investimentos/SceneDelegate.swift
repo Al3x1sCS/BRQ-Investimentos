@@ -6,12 +6,12 @@
 //
 
 import UIKit
-
+//TODO: usar o SceneDelegate e estudar as possibilidades do uso do UIResponder em conjunto com NotificationCenter
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
+    //TODO: Usar o willConnectTo para trabalhar em view code e linkar com o coordinator para dividir a responsabilidade de navegar entre as telas
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.

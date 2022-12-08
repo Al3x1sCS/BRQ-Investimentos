@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-
+//TODO: criar mais um init para o teclado, assim vai facilitar minha vida quando tiver mais textfields
 class TextFieldDefault: UITextField {
     init(placeholder: String) {
         super.init(frame: .zero)
