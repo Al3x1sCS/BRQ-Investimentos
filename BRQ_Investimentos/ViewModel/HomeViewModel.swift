@@ -11,18 +11,18 @@ protocol HomeModelProtocol {
     func updateView()
 }
 
-class HomeModel {
+class HomeViewModel {
     
     let service = HGFinanceService()
     var coins: [Coins] = []
     var delegate: HomeModelProtocol?
-    var viewModel: HomeModel?
+    var viewModel: HomeViewModel?
     
     init(delegate: HomeModelProtocol) {
         self.delegate = delegate
         getCoins()
     }
-    //TODO: verificar se vira um viewModel
+    
     private func getCoins() {
         service.getData { result, failure in
             guard let result = result else { return }

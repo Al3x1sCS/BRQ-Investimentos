@@ -24,7 +24,7 @@
 		CE293D0B28FDAD450059BD73 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE293D0A28FDAD450059BD73 /* SceneDelegate.swift */; };
 		CE293D1228FDAD480059BD73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE293D1128FDAD480059BD73 /* Assets.xcassets */; };
 		CE293D1528FDAD480059BD73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE293D1328FDAD480059BD73 /* LaunchScreen.storyboard */; };
-		CE2EFAC2290C073300064516 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2EFAC1290C073300064516 /* HomeModel.swift */; };
+		CE2EFAC2290C073300064516 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2EFAC1290C073300064516 /* HomeViewModel.swift */; };
 		CE59F350290028EF004CC7BA /* Tema.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59F34F290028EF004CC7BA /* Tema.swift */; };
 		CE6A8C242931519E00551D22 /* Arial Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE6A8C232931519E00551D22 /* Arial Black.ttf */; };
 		CE7A070F2900BABC00DD184C /* CurrenciesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A070E2900BABC00DD184C /* CurrenciesModel.swift */; };
@@ -60,7 +60,7 @@
 		CE293D1128FDAD480059BD73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE293D1428FDAD480059BD73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE293D1628FDAD480059BD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE2EFAC1290C073300064516 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		CE2EFAC1290C073300064516 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CE59F34F290028EF004CC7BA /* Tema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tema.swift; sourceTree = "<group>"; };
 		CE6A8C232931519E00551D22 /* Arial Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arial Black.ttf"; sourceTree = "<group>"; };
 		CE7A070E2900BABC00DD184C /* CurrenciesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesModel.swift; sourceTree = "<group>"; };
@@ -147,7 +147,6 @@
 			children = (
 				CE7A070E2900BABC00DD184C /* CurrenciesModel.swift */,
 				CE0B981F2906E29200E4403C /* ExchangeModel.swift */,
-				CE2EFAC1290C073300064516 /* HomeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE3530F291942AA00E0F8A1 /* BalanceViewModel.swift */,
+				CE2EFAC1290C073300064516 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -342,7 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE7A3EEB29350429003B7A39 /* ButtonDefault.swift in Sources */,
-				CE2EFAC2290C073300064516 /* HomeModel.swift in Sources */,
+				CE2EFAC2290C073300064516 /* HomeViewModel.swift in Sources */,
 				CE7A070F2900BABC00DD184C /* CurrenciesModel.swift in Sources */,
 				CE095184290814CE0065B81E /* BuyAndSellView.swift in Sources */,
 				CE26390A290207F900AB4169 /* ExchangeViewController.swift in Sources */,

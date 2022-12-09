@@ -19,7 +19,7 @@ class HomeViewController: BaseViewController {
     var exchangeVC = ExchangeViewController()
     var buyAndSellVC = BuyAndSellViewController()
     
-    var viewHomeModel: HomeModel?
+    var homeViewModel: HomeViewModel?
     var viewExchangeModel: ExchangeModel?
     
     // MARK: - loadView
@@ -43,14 +43,14 @@ class HomeViewController: BaseViewController {
     
     // MARK: - viewDidAppear
     override func viewWillAppear(_ animated: Bool) {
-        viewHomeModel = HomeModel(delegate: self)
+        homeViewModel = HomeViewModel(delegate: self)
         self.tabBarController?.navigationItem.hidesBackButton = true
     }
     //TODO: verificar se é responsabilidade da view model
     // MARK: variationColor
     private func variationColor(indexPath: Int) -> UIColor {
         
-        if let variation = self.viewHomeModel?.getVariation(index: indexPath) {
+        if let variation = self.homeViewModel?.getVariation(index: indexPath) {
             
             if variation > 0 {
                 return .variationGreen()
@@ -73,15 +73,15 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewHomeModel?.coins.count ?? 0
+        return homeViewModel?.coins.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CoinCell", for: indexPath) as! CoinsViewCell
         
-        cell.coinLabel.text = viewHomeModel?.coins[indexPath.row].sigla
+        cell.coinLabel.text = homeViewModel?.coins[indexPath.row].sigla
         //TODO: verificar a posibilidade disso ser responsa da viewmodel
-        if let variation = viewHomeModel?.coins[indexPath.row].variation {
+        if let variation = homeViewModel?.coins[indexPath.row].variation {
             cell.variationLabel.text = "\(String(format: "%.2f", variation))%"
         }
         
@@ -96,7 +96,7 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let coin = viewHomeModel?.coins[indexPath.row] {
+        if let coin = homeViewModel?.coins[indexPath.row] {
             exchangeVC.viewExchangeModel = ExchangeModel(coin: coin)
         }
         //TODO: verificar se tem que chamar o coordinator aki
