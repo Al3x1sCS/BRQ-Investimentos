@@ -8,12 +8,17 @@
 import Foundation
 import UIKit
 
-//TODO: criar mais um init para o teclado, assim vai facilitar minha vida quando tiver mais textfields
 class TextFieldDefault: UITextField {
-    init(placeholder: String) {
+    init(placeholder: String, keyboardType: UIKeyboardType) {
         super.init(frame: .zero)
-        
         initDefault(placeholder: placeholder)
+        self.keyboardType = keyboardType
+    }
+    
+    init(placeholder: String, isSecureTextEntry: Bool) {
+        super.init(frame: .zero)
+        initDefault(placeholder: placeholder)
+        self.isSecureTextEntry = isSecureTextEntry
     }
     
     required init?(coder: NSCoder) {
@@ -24,11 +29,10 @@ class TextFieldDefault: UITextField {
         self.backgroundColor = .black
         self.textColor = .white
         self.placeholder = placeholder
-        self.keyboardType = .numberPad
         self.layer.cornerRadius = 10
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.temaGray().cgColor
-        self.setPlaceHolderColor()
+        self.layer.borderColor = UIColor.BRQGray().cgColor
+        self.setPlaceHolderColor(UIColor.BRQGray())
         self.setLeftPaddingPoints(10)
     }
 }

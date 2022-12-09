@@ -18,13 +18,14 @@ class ButtonDefault: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    //TODO: parar de usar UIButton.Configuration isso faz meu aplicativo n funcionar adequadamente em versões abaixo de iOS 15, isso é muito ruim.
+
     private func initDefault(title: String) {
         var config = UIButton.Configuration.filled()
-        config.baseBackgroundColor = .buttons()
+        config.baseBackgroundColor = .BRQBlue()
         config.cornerStyle = .capsule
         self.configuration = config
         self.setTitle(title, for: .normal)
+        self.layer.cornerRadius = 21.5
         
         let attributedText = NSMutableAttributedString(string: title, attributes: [
             NSAttributedString.Key.font: UIFont(name: "Arial", size: 23) as Any,
@@ -33,8 +34,7 @@ class ButtonDefault: UIButton {
         ])
         
         self.setAttributedTitle(attributedText, for: .normal)
-        //TODO: responsabilidade da view ou da viewmodel, estudar sobre.
-        self.setBackgroundColor(UIColor.buttons().withAlphaComponent(0.5), for: .disabled)
+        self.setBackgroundColor(UIColor.BRQBlue().withAlphaComponent(0.5), for: .disabled)
     }
     
     enum ButtonState {
@@ -68,12 +68,9 @@ class ButtonDefault: UIButton {
         switch state {
         case .disabled:
             disabledBackgroundColor = color
-            //TODO: tchau
-            self.layer.cornerRadius = 21.5
+            
         case .normal:
             defaultBackgroundColor = color
-            //TODO: tchau2
-            self.layer.cornerRadius = 21.5
         }
     }
 }
