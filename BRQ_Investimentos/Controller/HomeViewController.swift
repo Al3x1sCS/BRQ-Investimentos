@@ -12,7 +12,7 @@ class HomeViewController: BaseViewController {
     // MARK: - attributes
     lazy var homeView: HomeView = {
         var view = BRQ_Investimentos.HomeView()
-        
+        setupNavigation(with: "Moedas")
         return view
     }()
 
@@ -31,14 +31,7 @@ class HomeViewController: BaseViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TODO: sera mesmo que é responsabilidade da controller atribuir um nome a tela? verificar a possibilidade de passar isso pra view.
-        setupNavigation(with: "Moedas")
-        homeView.setupView()
-        
-        //TODO: estudar mais pra saber se esta correto esses delegates no viewDidLoad
-        homeView.collectionView.dataSource = self
-        homeView.collectionView.delegate = self
-        buyAndSellVC.delegate = self
+        setDelegates()
     }
     
     // MARK: - viewDidAppear
@@ -46,21 +39,11 @@ class HomeViewController: BaseViewController {
         homeViewModel = HomeViewModel(delegate: self)
         self.tabBarController?.navigationItem.hidesBackButton = true
     }
-    //TODO: verificar se é responsabilidade da view model
-    // MARK: variationColor
-    private func variationColor(indexPath: Int) -> UIColor {
-        
-        if let variation = self.homeViewModel?.getVariation(index: indexPath) {
-            
-            if variation > 0 {
-                return .variationGreen()
-            } else if variation < 0 {
-                return .variationRed()
-            } else {
-                return UIColor.white
-            }
-        }
-        return UIColor()
+    
+    func setDelegates() {
+        homeView.collectionView.dataSource = self
+        homeView.collectionView.delegate = self
+        buyAndSellVC.delegate = self
     }
     
 }
@@ -73,19 +56,19 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return homeViewModel?.coins.count ?? 0
+        return self.homeViewModel?.numberOfItems ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CoinCell", for: indexPath) as! CoinsViewCell
         
         cell.coinLabel.text = homeViewModel?.coins[indexPath.row].sigla
-        //TODO: verificar a posibilidade disso ser responsa da viewmodel
+
         if let variation = homeViewModel?.coins[indexPath.row].variation {
             cell.variationLabel.text = "\(String(format: "%.2f", variation))%"
         }
         
-        cell.variationLabel.textColor = variationColor(indexPath: indexPath.row)
+        cell.variationLabel.textColor = homeViewModel?.variationColor(indexPath: indexPath.row)
         
         return cell
     }
@@ -99,7 +82,6 @@ extension HomeViewController: UICollectionViewDelegate {
         if let coin = homeViewModel?.coins[indexPath.row] {
             exchangeVC.viewExchangeModel = ExchangeModel(coin: coin)
         }
-        //TODO: verificar se tem que chamar o coordinator aki
         self.navigationController?.pushViewController(exchangeVC, animated: true)
     }
     

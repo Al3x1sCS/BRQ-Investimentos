@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol HomeModelProtocol {
     func updateView()
@@ -16,7 +17,6 @@ class HomeViewModel {
     let service = HGFinanceService()
     var coins: [Coins] = []
     var delegate: HomeModelProtocol?
-    var viewModel: HomeViewModel?
     
     init(delegate: HomeModelProtocol) {
         self.delegate = delegate
@@ -52,6 +52,27 @@ class HomeViewModel {
     
     func getVariation(index: Int) -> Double {
         return coins[index].variation
+    }
+    
+    public func variationColor(indexPath: Int) -> UIColor {
+        
+        let variation = self.getVariation(index: indexPath)
+            
+            if variation > 0 {
+                return .variationGreen()
+            } else if variation < 0 {
+                return .variationRed()
+            } else {
+                return UIColor.white
+            }
+    }
+    
+    public var numberOfItems: Int {
+        return self.coins.count
+    }
+    
+    public func loadCurrentCoin(indexPath: IndexPath) -> Coins {
+        return self.coins[indexPath.row]
     }
     
 }
