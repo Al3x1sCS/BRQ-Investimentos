@@ -17,7 +17,7 @@ class ExchangeViewController: BaseViewController {
     }()
     
     var viewExchangeModel: ExchangeModel?
-    var balanceModel: BalanceModel?
+    var balanceModel: BalanceViewModel?
     var message: String?
     
     // MARK: - loadView
@@ -32,7 +32,7 @@ class ExchangeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        balanceModel = BalanceModel()
+        balanceModel = BalanceViewModel()
         setupNavigation(with: "Câmbio")
         exchangeView.setupView()
         //TODO: addTarget deve ser responsa da viewModle ou da view, verificar.

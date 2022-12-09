@@ -139,7 +139,7 @@ extension HomeViewController: HomeModelProtocol {
 
 extension HomeViewController: BuyAndSellProtocol {
     
-    func currency(user: BalanceModel) {
+    func currency(user: BalanceViewModel) {
         exchangeVC.balanceModel = user
     }
     

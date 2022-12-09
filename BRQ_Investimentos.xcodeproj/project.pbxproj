@@ -31,7 +31,7 @@
 		CE7A3EE92934FF75003B7A39 /* TextFieldDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A3EE82934FF75003B7A39 /* TextFieldDefault.swift */; };
 		CE7A3EEB29350429003B7A39 /* ButtonDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A3EEA29350429003B7A39 /* ButtonDefault.swift */; };
 		CEAA726E29047E670092A9A1 /* HGFinanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA726D29047E670092A9A1 /* HGFinanceService.swift */; };
-		CEE35310291942AA00E0F8A1 /* BalanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3530F291942AA00E0F8A1 /* BalanceModel.swift */; };
+		CEE35310291942AA00E0F8A1 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3530F291942AA00E0F8A1 /* BalanceViewModel.swift */; };
 		FFE2343995BDA51117F8BEDB /* Pods_BRQ_Investimentos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829E96BAA4A4A8CCAD2BA197 /* Pods_BRQ_Investimentos.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +65,7 @@
 		CE7A3EE82934FF75003B7A39 /* TextFieldDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDefault.swift; sourceTree = "<group>"; };
 		CE7A3EEA29350429003B7A39 /* ButtonDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDefault.swift; sourceTree = "<group>"; };
 		CEAA726D29047E670092A9A1 /* HGFinanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HGFinanceService.swift; sourceTree = "<group>"; };
-		CEE3530F291942AA00E0F8A1 /* BalanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceModel.swift; sourceTree = "<group>"; };
+		CEE3530F291942AA00E0F8A1 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +141,6 @@
 		CE01A1AA28FECD1D00F81A83 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CEE3530F291942AA00E0F8A1 /* BalanceModel.swift */,
 				CE7A070E2900BABC00DD184C /* CurrenciesModel.swift */,
 				CE0B981F2906E29200E4403C /* ExchangeModel.swift */,
 				CE2EFAC1290C073300064516 /* HomeModel.swift */,
@@ -182,6 +181,7 @@
 			children = (
 				CE01A1AA28FECD1D00F81A83 /* Model */,
 				CE01A1A928FECD1000F81A83 /* View */,
+				CEA37F1729436AAE00001CC3 /* ViewModel */,
 				CE01A1A828FECD0C00F81A83 /* Controller */,
 				CE01A1A728FECD0A00F81A83 /* Service */,
 				CE24B1642931134300A1BC2B /* Components */,
@@ -202,6 +202,14 @@
 				CE6A8C232931519E00551D22 /* Arial Black.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		CEA37F1729436AAE00001CC3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEE3530F291942AA00E0F8A1 /* BalanceViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,7 +332,7 @@
 				CE7A070F2900BABC00DD184C /* CurrenciesModel.swift in Sources */,
 				CE095184290814CE0065B81E /* BuyAndSellView.swift in Sources */,
 				CE26390A290207F900AB4169 /* ExchangeViewController.swift in Sources */,
-				CEE35310291942AA00E0F8A1 /* BalanceModel.swift in Sources */,
+				CEE35310291942AA00E0F8A1 /* BalanceViewModel.swift in Sources */,
 				CE24B1662931140400A1BC2B /* LabelDefault.swift in Sources */,
 				CE0B98202906E29200E4403C /* ExchangeModel.swift in Sources */,
 				CE7A3EE92934FF75003B7A39 /* TextFieldDefault.swift in Sources */,

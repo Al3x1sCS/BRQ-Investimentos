@@ -7,12 +7,12 @@
 
 import Foundation
 
-class BalanceModel {
+class BalanceViewModel {
     var balance: Double
     var userWallet: [String: Int]
     
     let apiCurrencies = ["USD", "EUR", "GBP", "ARS", "AUD", "BTC", "CAD", "CNY", "JPY"]
-    //TODO: verificar se vai virar mesmo um viewmodel
+    
     var balanceLabelFormated: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
