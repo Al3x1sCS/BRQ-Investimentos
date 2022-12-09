@@ -26,7 +26,7 @@ class ExchangeView: UIView, ViewCodeProtocol {
     lazy var cashierLabel = LabelDefault(text: "", font: UIFont(name: "Arial", size: 24.0) ?? UIFont.systemFont(ofSize: 22))
     
     // MARK: - Text Field
-    lazy var amountLabel = TextFieldDefault(placeholder: "Quantidade")
+    lazy var amountLabel = TextFieldDefault(placeholder: "Quantidade", keyboardType: .numberPad)
     
     // MARK: - Buttons
     lazy var sellButton = ButtonDefault(title: "VENDER")

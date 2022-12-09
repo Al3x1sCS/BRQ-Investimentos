@@ -35,11 +35,7 @@ class ExchangeViewController: BaseViewController {
         balanceModel = BalanceViewModel()
         setupNavigation(with: "Câmbio")
         exchangeView.setupView()
-        //TODO: addTarget deve ser responsa da viewModle ou da view, verificar.
-        exchangeView.amountLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        
-        exchangeView.sellButton.addTarget(self, action: #selector(sellTapped), for: .touchUpInside)
-        exchangeView.buyButton.addTarget(self, action: #selector(buyTapped), for: .touchUpInside)
+        setTargets()
         
         exchangeView.amountLabel.delegate = self
     }
@@ -55,11 +51,16 @@ class ExchangeViewController: BaseViewController {
     }
     //TODO: - verificar se todas as func vão virar viewModel, ou seja, devo estudar mais sobre a responsa da viewModel
     //TODO: no geral verificar por que tem privates func e outras não privadas
-    //TODO: verificar se esta no lugar correto
     // MARK: setupKeyboardHiding
     private func setupKeyboardHiding() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func setTargets() {
+        exchangeView.sellButton.addTarget(self, action: #selector(sellTapped), for: .touchUpInside)
+        exchangeView.buyButton.addTarget(self, action: #selector(buyTapped), for: .touchUpInside)
+        exchangeView.amountLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     // MARK: buyAndSellNavigation

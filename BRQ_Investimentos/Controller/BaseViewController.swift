@@ -49,8 +49,8 @@ extension UITextField {
         self.rightViewMode = .always
     }
     
-    func setPlaceHolderColor(){
-        self.attributedPlaceholder = NSAttributedString(string: self.placeholder!, attributes: [NSAttributedString.Key.foregroundColor : UIColor.temaGray()])
+    func setPlaceHolderColor(_ color: UIColor){
+        self.attributedPlaceholder = NSAttributedString(string: self.placeholder!, attributes: [NSAttributedString.Key.foregroundColor : color])
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
