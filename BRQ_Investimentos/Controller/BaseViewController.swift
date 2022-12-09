@@ -14,6 +14,11 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func loadView() {
+        super.loadView()
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+    }
+    
     // MARK: setupNavigation
     func setupNavigation(with title: String) {
         navigationItem.title = title

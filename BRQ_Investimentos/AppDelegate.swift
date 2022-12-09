@@ -19,10 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool {
         
-        //TODO: Mover para View de cada uma das telas
-        navigation.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        exchangeNavigation.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        buyAndSellNavigation.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        //TODO: Mover para View de cada uma das telas DONE
         
         //TODO: Coordinator? mas tambem tem que ver esse background black perdido
         window = UIWindow(frame: UIScreen.main.bounds)
