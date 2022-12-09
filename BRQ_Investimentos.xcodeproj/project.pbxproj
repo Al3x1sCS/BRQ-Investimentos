@@ -30,6 +30,8 @@
 		CE7A070F2900BABC00DD184C /* CurrenciesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A070E2900BABC00DD184C /* CurrenciesModel.swift */; };
 		CE7A3EE92934FF75003B7A39 /* TextFieldDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A3EE82934FF75003B7A39 /* TextFieldDefault.swift */; };
 		CE7A3EEB29350429003B7A39 /* ButtonDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A3EEA29350429003B7A39 /* ButtonDefault.swift */; };
+		CEA37F1A2943865100001CC3 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA37F192943865100001CC3 /* Coordinator.swift */; };
+		CEA37F1C294386C900001CC3 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA37F1B294386C900001CC3 /* HomeCoordinator.swift */; };
 		CEAA726E29047E670092A9A1 /* HGFinanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA726D29047E670092A9A1 /* HGFinanceService.swift */; };
 		CEE35310291942AA00E0F8A1 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3530F291942AA00E0F8A1 /* BalanceViewModel.swift */; };
 		FFE2343995BDA51117F8BEDB /* Pods_BRQ_Investimentos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829E96BAA4A4A8CCAD2BA197 /* Pods_BRQ_Investimentos.framework */; };
@@ -64,6 +66,8 @@
 		CE7A070E2900BABC00DD184C /* CurrenciesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesModel.swift; sourceTree = "<group>"; };
 		CE7A3EE82934FF75003B7A39 /* TextFieldDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDefault.swift; sourceTree = "<group>"; };
 		CE7A3EEA29350429003B7A39 /* ButtonDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDefault.swift; sourceTree = "<group>"; };
+		CEA37F192943865100001CC3 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		CEA37F1B294386C900001CC3 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		CEAA726D29047E670092A9A1 /* HGFinanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HGFinanceService.swift; sourceTree = "<group>"; };
 		CEE3530F291942AA00E0F8A1 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +183,7 @@
 		CE293D0728FDAD450059BD73 /* BRQ_Investimentos */ = {
 			isa = PBXGroup;
 			children = (
+				CEA37F182943863900001CC3 /* Coordinator */,
 				CE01A1AA28FECD1D00F81A83 /* Model */,
 				CE01A1A928FECD1000F81A83 /* View */,
 				CEA37F1729436AAE00001CC3 /* ViewModel */,
@@ -210,6 +215,15 @@
 				CEE3530F291942AA00E0F8A1 /* BalanceViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CEA37F182943863900001CC3 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				CEA37F192943865100001CC3 /* Coordinator.swift */,
+				CEA37F1B294386C900001CC3 /* HomeCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +346,7 @@
 				CE7A070F2900BABC00DD184C /* CurrenciesModel.swift in Sources */,
 				CE095184290814CE0065B81E /* BuyAndSellView.swift in Sources */,
 				CE26390A290207F900AB4169 /* ExchangeViewController.swift in Sources */,
+				CEA37F1C294386C900001CC3 /* HomeCoordinator.swift in Sources */,
 				CEE35310291942AA00E0F8A1 /* BalanceViewModel.swift in Sources */,
 				CE24B1662931140400A1BC2B /* LabelDefault.swift in Sources */,
 				CE0B98202906E29200E4403C /* ExchangeModel.swift in Sources */,
@@ -344,6 +359,7 @@
 				CEAA726E29047E670092A9A1 /* HGFinanceService.swift in Sources */,
 				CE0B981E2906D7BF00E4403C /* ServiceProtocol.swift in Sources */,
 				CE01A1B428FF191000F81A83 /* HomeView.swift in Sources */,
+				CEA37F1A2943865100001CC3 /* Coordinator.swift in Sources */,
 				CE01A1B628FF223900F81A83 /* BaseViewController.swift in Sources */,
 				CE095182290813AD0065B81E /* BuyAndSellViewController.swift in Sources */,
 				CE01A1B028FEDBC000F81A83 /* CoinsViewCell.swift in Sources */,
