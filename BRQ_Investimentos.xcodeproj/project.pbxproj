@@ -27,6 +27,8 @@
 		CE2EFAC2290C073300064516 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2EFAC1290C073300064516 /* HomeViewModel.swift */; };
 		CE59F350290028EF004CC7BA /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59F34F290028EF004CC7BA /* Theme.swift */; };
 		CE6A8C242931519E00551D22 /* Arial Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE6A8C232931519E00551D22 /* Arial Black.ttf */; };
+		CE7607602945132A00B197BE /* KeyboardManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76075F2945132A00B197BE /* KeyboardManeger.swift */; };
+		CE760762294521B000B197BE /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE760761294521B000B197BE /* ExchangeViewModel.swift */; };
 		CE7A070F2900BABC00DD184C /* CurrenciesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A070E2900BABC00DD184C /* CurrenciesModel.swift */; };
 		CE7A3EE92934FF75003B7A39 /* TextFieldDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A3EE82934FF75003B7A39 /* TextFieldDefault.swift */; };
 		CE7A3EEB29350429003B7A39 /* ButtonDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A3EEA29350429003B7A39 /* ButtonDefault.swift */; };
@@ -63,6 +65,8 @@
 		CE2EFAC1290C073300064516 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CE59F34F290028EF004CC7BA /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		CE6A8C232931519E00551D22 /* Arial Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arial Black.ttf"; sourceTree = "<group>"; };
+		CE76075F2945132A00B197BE /* KeyboardManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManeger.swift; sourceTree = "<group>"; };
+		CE760761294521B000B197BE /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		CE7A070E2900BABC00DD184C /* CurrenciesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesModel.swift; sourceTree = "<group>"; };
 		CE7A3EE82934FF75003B7A39 /* TextFieldDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDefault.swift; sourceTree = "<group>"; };
 		CE7A3EEA29350429003B7A39 /* ButtonDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDefault.swift; sourceTree = "<group>"; };
@@ -212,7 +216,9 @@
 			isa = PBXGroup;
 			children = (
 				CEE3530F291942AA00E0F8A1 /* BalanceViewModel.swift */,
+				CE760761294521B000B197BE /* ExchangeViewModel.swift */,
 				CE2EFAC1290C073300064516 /* HomeViewModel.swift */,
+				CE76075F2945132A00B197BE /* KeyboardManeger.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -359,10 +365,12 @@
 				CEAA726E29047E670092A9A1 /* HGFinanceService.swift in Sources */,
 				CE0B981E2906D7BF00E4403C /* ServiceProtocol.swift in Sources */,
 				CE01A1B428FF191000F81A83 /* HomeView.swift in Sources */,
+				CE7607602945132A00B197BE /* KeyboardManeger.swift in Sources */,
 				CEA37F1A2943865100001CC3 /* Coordinator.swift in Sources */,
 				CE01A1B628FF223900F81A83 /* BaseViewController.swift in Sources */,
 				CE095182290813AD0065B81E /* BuyAndSellViewController.swift in Sources */,
 				CE01A1B028FEDBC000F81A83 /* CoinsViewCell.swift in Sources */,
+				CE760762294521B000B197BE /* ExchangeViewModel.swift in Sources */,
 				CE26391029020A0800AB4169 /* ExchangeView.swift in Sources */,
 				CE293D0B28FDAD450059BD73 /* SceneDelegate.swift in Sources */,
 			);
