@@ -6,12 +6,15 @@
 //
 
 import UIKit
-//TODO: usar o SceneDelegate e estudar as possibilidades do uso do UIResponder em conjunto com NotificationCenter
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var keyboardManager: KeyboardManager?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        
         guard let winScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: winScene)
@@ -22,7 +25,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let coordinator = HomeCoordinator(navigationController: navigationController)
         coordinator.start()
+        
+        keyboardManager = KeyboardManager()
+        keyboardManager?.window = window
     }
+    
+    deinit {
+        keyboardManager = nil
+    }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -55,3 +66,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension UIResponder {
+
+    private struct Static {
+        static weak var responder: UIResponder?
+    }
+
+    static func currentFirst() -> UIResponder? {
+        Static.responder = nil
+        UIApplication.shared.sendAction(#selector(UIResponder._trap), to: nil, from: nil, for: nil)
+        return Static.responder
+    }
+
+    @objc private func _trap() {
+        Static.responder = self
+    }
+}
