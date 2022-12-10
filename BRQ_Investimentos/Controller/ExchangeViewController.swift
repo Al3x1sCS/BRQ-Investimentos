@@ -16,6 +16,8 @@ class ExchangeViewController: BaseViewController {
         return view
     }()
     
+    var exchangeViewModel: ExchangeViewModel?
+    
     var viewExchangeModel: ExchangeModel?
     var balanceModel: BalanceViewModel?
     var message: String?
@@ -31,9 +33,9 @@ class ExchangeViewController: BaseViewController {
         super.viewDidLoad()
         
         balanceModel = BalanceViewModel()
-        setupNavigation(with: "Câmbio")
+
         exchangeView.setupView()
-        setTargets()
+
         
         exchangeView.amountLabel.delegate = self
     }
@@ -55,11 +57,9 @@ class ExchangeViewController: BaseViewController {
     
     //TODO: - verificar se todas as func vão virar viewModel, ou seja, devo estudar mais sobre a responsa da viewModel
     
-    private func setTargets() {
-        exchangeView.sellButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        exchangeView.buyButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        exchangeView.amountLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-    }
+//    private func setTargets() {
+//        
+//    }
     
     // MARK: buyAndSellNavigation
     private func buyAndSellNavigation(title: String) {
@@ -136,71 +136,5 @@ class ExchangeViewController: BaseViewController {
         }
     }
     
-    // MARK: - @objc textFieldDidChange
-    @objc private func textFieldDidChange(textField: UITextField) {
-        guard let balance = balanceModel,
-              let coinBuy = viewExchangeModel?.coin.buy,
-              let amountLabelText = exchangeView.amountLabel.text,
-              let amountTextInt = Int(amountLabelText),
-              let coinSigla = viewExchangeModel?.coin.sigla,
-              let wallet = balance.userWallet[coinSigla],
-              let amountTextDouble = Double(amountLabelText) else { return }
-        
-        let balanceDividedByPurchase = (balance.balance ) / (coinBuy)
-        let sellPrice = viewExchangeModel?.coin.sell ?? 0
-        
-        if amountLabelText == "" {
-            exchangeView.buyButton.isEnabled = false
-            exchangeView.sellButton.isEnabled = false
-        } else {
-            exchangeView.buyButton.isEnabled = true
-            exchangeView.sellButton.isEnabled = true
-        }
-        
-        if amountTextDouble > balanceDividedByPurchase {
-            exchangeView.buyButton.isEnabled = false
-        }
-        
-        if amountTextInt > wallet {
-            exchangeView.sellButton.isEnabled = false
-        }
-        
-        if sellPrice <= 0 {
-            exchangeView.sellButton.isEnabled = false
-        }
-        
-    }
-    
-    @objc func buttonTapped(sender: UIButton) {
-        guard let user = balanceModel,
-              let currency = viewExchangeModel?.coin,
-              let coinSell = currency.sell,
-              let viewExchangeModel = viewExchangeModel,
-              let coinSigla = viewExchangeModel.coin.sigla,
-              let stringInputAmount = exchangeView.amountLabel.text,
-              let intInputAmount = Int(stringInputAmount) else { return }
-
-        let coinName = viewExchangeModel.coin.name
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "BRL"
-        let total = String(formatter.string(from: NSNumber(value: (coinSell)*(Double(intInputAmount))))!)
-
-        switch sender {
-            case exchangeView.sellButton:
-                user.transactions("sell", quantity: intInputAmount, coinSigla, currency)
-                message = "Parabéns!\nVocê acabou de vender\n\(intInputAmount) \(coinSigla) - \(coinName),\n totalizando\n\(total)"
-                buyAndSellNavigation(title: "Venda")
-            case exchangeView.buyButton:
-                user.transactions("buy", quantity: intInputAmount, coinSigla, currency)
-                message = "Parabéns!\nVocê acabou de\ncomprar \(intInputAmount) \(coinSigla) - \n\(coinName), totalizando\n\(total)"
-                buyAndSellNavigation(title: "Compra")
-            default:
-                break
-        }
-
-        exchangeView.balanceLabel.text = "Saldo disponível: \(user.balanceLabelFormated)"
-        exchangeView.cashierLabel.text = "\(String(user.userWallet[coinSigla] ?? 0)) \(coinName) em caixa"
-    }
     
 }
