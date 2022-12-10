@@ -12,7 +12,7 @@ class ExchangeViewController: BaseViewController {
     // MARK: - attributes
     lazy var exchangeView: ExchangeView = {
         var view = BRQ_Investimentos.ExchangeView()
-        
+        view.backgroundColor = .black
         return view
     }()
     
@@ -24,8 +24,6 @@ class ExchangeViewController: BaseViewController {
     override func loadView() {
         super.loadView()
         view = exchangeView
-        //TODO: responsabilidade da view
-        view.backgroundColor = .black
     }
     
     // MARK: - viewDidLoad
@@ -42,24 +40,24 @@ class ExchangeViewController: BaseViewController {
     
     // MARK: - viewDidAppear
     override func viewDidAppear(_ animated: Bool) {
-        setupKeyboardHiding()
         settingStackViewLabels()
         settingBalanceWalletLabels()
         setAmountLabelText()
-        settingSellButtons()
-        settingBuyButtons()
-    }
-    //TODO: - verificar se todas as func vão virar viewModel, ou seja, devo estudar mais sobre a responsa da viewModel
-    //TODO: no geral verificar por que tem privates func e outras não privadas
-    // MARK: setupKeyboardHiding
-    private func setupKeyboardHiding() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        setupButtons()
     }
     
+    // MARK: - viewDidDisappear
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    //TODO: - verificar se todas as func vão virar viewModel, ou seja, devo estudar mais sobre a responsa da viewModel
+    
     private func setTargets() {
-        exchangeView.sellButton.addTarget(self, action: #selector(sellTapped), for: .touchUpInside)
-        exchangeView.buyButton.addTarget(self, action: #selector(buyTapped), for: .touchUpInside)
+        exchangeView.sellButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        exchangeView.buyButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         exchangeView.amountLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
@@ -115,28 +113,23 @@ class ExchangeViewController: BaseViewController {
         exchangeView.cashierLabel.text = "\(userCoinValue) \(coinName) em caixa"
     }
     
-    // MARK: settingSellButtons
-    func settingSellButtons() {
+    func setupButtons() {
         guard let user = balanceModel,
               let viewExchangeModel = viewExchangeModel,
               let coinSigla = viewExchangeModel.coin.sigla,
               let wallet = user.userWallet[coinSigla] else { return }
-        
+
         let sellButton = exchangeView.sellButton
         sellButton.isEnabled = false
-        
+
         guard wallet > 0 else {
             sellButton.isEnabled = false
-            
             return
         }
-    }
-    
-    // MARK: settingBuyButtons
-    func settingBuyButtons() {
+
         let buyButton = exchangeView.buyButton
         buyButton.isEnabled = false
-        
+
         guard balanceModel?.balance ?? 0 > 0 else {
             buyButton.isEnabled = false
             return
@@ -178,8 +171,7 @@ class ExchangeViewController: BaseViewController {
         
     }
     
-    // MARK: @objc sellTapped
-    @objc func sellTapped(sender: UIButton) {
+    @objc func buttonTapped(sender: UIButton) {
         guard let user = balanceModel,
               let currency = viewExchangeModel?.coin,
               let coinSell = currency.sell,
@@ -187,80 +179,28 @@ class ExchangeViewController: BaseViewController {
               let coinSigla = viewExchangeModel.coin.sigla,
               let stringInputAmount = exchangeView.amountLabel.text,
               let intInputAmount = Int(stringInputAmount) else { return }
-        
+
         let coinName = viewExchangeModel.coin.name
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.currencyCode = "BRL"
         let total = String(formatter.string(from: NSNumber(value: (coinSell)*(Double(intInputAmount))))!)
-        
-        user.transactions("sell", quantity: intInputAmount, coinSigla, currency)
+
+        switch sender {
+            case exchangeView.sellButton:
+                user.transactions("sell", quantity: intInputAmount, coinSigla, currency)
+                message = "Parabéns!\nVocê acabou de vender\n\(intInputAmount) \(coinSigla) - \(coinName),\n totalizando\n\(total)"
+                buyAndSellNavigation(title: "Venda")
+            case exchangeView.buyButton:
+                user.transactions("buy", quantity: intInputAmount, coinSigla, currency)
+                message = "Parabéns!\nVocê acabou de\ncomprar \(intInputAmount) \(coinSigla) - \n\(coinName), totalizando\n\(total)"
+                buyAndSellNavigation(title: "Compra")
+            default:
+                break
+        }
+
         exchangeView.balanceLabel.text = "Saldo disponível: \(user.balanceLabelFormated)"
         exchangeView.cashierLabel.text = "\(String(user.userWallet[coinSigla] ?? 0)) \(coinName) em caixa"
-        message = "Parabéns!\nVocê acabou de vender\n\(intInputAmount) \(coinSigla) - \(coinName),\n totalizando\n\(total)"
-        buyAndSellNavigation(title: "Venda")
     }
     
-    // MARK: @objc buyTapped
-    @objc func buyTapped(sender: UIButton) {
-        guard let user = balanceModel,
-              let currency = viewExchangeModel?.coin,
-              let coinBuy = currency.buy,
-              let viewExchangeModel = viewExchangeModel,
-              let coinSigla = viewExchangeModel.coin.sigla,
-              let stringInputAmount = exchangeView.amountLabel.text,
-              let intInputAmount = Int(stringInputAmount) else { return }
-        
-        let coinName = viewExchangeModel.coin.name
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "BRL"
-        let total = String(formatter.string(from: NSNumber(value: (coinBuy)*(Double(intInputAmount))))!)
-        
-        user.transactions("buy", quantity: intInputAmount, coinSigla, currency)
-        exchangeView.balanceLabel.text = "Saldo disponível: \(user.balanceLabelFormated)"
-        exchangeView.cashierLabel.text = "\(String(user.userWallet[coinSigla] ?? 0)) \(coinName) em caixa"
-        message = "Parabéns!\nVocê acabou de\ncomprar \(intInputAmount) \(coinSigla) - \n\(coinName), totalizando\n\(total)"
-        buyAndSellNavigation(title: "Compra")
-    }
-    
-}
-//TODO: verificar se n é responsa da viewmodel
-// MARK: - Extensions
-extension ExchangeViewController {
-    
-    @objc func keyboardWillShow(sender: NSNotification) {
-        guard let userInfo = sender.userInfo,
-              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
-              let currentTextField = UIResponder.currentFirst() as? UITextField else { return }
-        
-        let keyboardTopY = keyboardFrame.cgRectValue.origin.y
-        let convertedTextFieldFrame = view.convert(currentTextField.frame, from: currentTextField.superview)
-        
-        let textBoxY = convertedTextFieldFrame.origin.y
-        let newFrameY = (textBoxY - keyboardTopY / 2) * -1.4
-        view.frame.origin.y = newFrameY
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-        view.frame.origin.y = 0
-    }
-}
-//TODO: verificar a possibilidade de mudar isso la pra o sceneDelegate e se é certo ou não
-// MARK: UIResponder
-extension UIResponder {
-
-    private struct Static {
-        static weak var responder: UIResponder?
-    }
-
-    static func currentFirst() -> UIResponder? {
-        Static.responder = nil
-        UIApplication.shared.sendAction(#selector(UIResponder._trap), to: nil, from: nil, for: nil)
-        return Static.responder
-    }
-
-    @objc private func _trap() {
-        Static.responder = self
-    }
 }
