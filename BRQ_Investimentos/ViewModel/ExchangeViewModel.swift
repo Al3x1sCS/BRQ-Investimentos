@@ -9,117 +9,58 @@ import Foundation
 import UIKit
 
 class ExchangeViewModel {
-
+    
     // MARK: - attributes
-    private var exchangeModel: ExchangeModel?
-    private var balanceViewModel: BalanceViewModel?
-    private var exchangeView: ExchangeView?
-    private var message: String?
+    var viewExchangeModel: ExchangeModel?
+    var balanceModel: BalanceViewModel?
+    var message: String?
     
-    // MARK: - init
-    init(exchangeModel: ExchangeModel, balanceViewModel: BalanceViewModel) {
-        self.exchangeModel = exchangeModel
-        self.balanceViewModel = balanceViewModel
+    // MARK: - Initialization
+    init(viewExchangeModel: ExchangeModel?, balanceModel: BalanceViewModel?, message: String?) {
+        self.viewExchangeModel = viewExchangeModel
+        self.balanceModel = balanceModel
+        self.message = message
     }
     
-    // MARK: - public functions
-    public func setupNavigation(with title: String) {
-        setupNavigation(with: "Câmbio")
+    // MARK: - setTargets
+    func setTargets() {
+        // Implementar a funcionalidade de adicionar targets aos botões e text field
     }
     
-    public func setTargets() {
-        exchangeView?.sellButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        exchangeView?.buyButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        exchangeView?.amountLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    // MARK: - buyAndSellNavigation
+    func buyAndSellNavigation(title: String) {
+        // Implementar a funcionalidade de navegação para a tela de compra e venda
     }
     
-    public func buyAndSellNavigation(title: String) {
-        // Código para navegar para a tela de compra e venda aqui
+    // MARK: - setAmountLabelText
+    func setAmountLabelText() {
+        // Implementar a funcionalidade de definir o texto do amountLabel
     }
     
-    public func setAmountLabelText() {
-        // Código para definir o texto do label de quantidade aqui
+    // MARK: - settingStackViewLabels
+    func settingStackViewLabels() {
+        // Implementar a funcionalidade de definir os labels da stack view
     }
     
-    public func settingStackViewLabels() {
-        // Código para configurar os labels da stack view aqui
+    // MARK: - settingBalanceWalletLabels
+    func settingBalanceWalletLabels() {
+        // Implementar a funcionalidade de definir os labels do balance wallet
     }
     
-    public func settingBalanceWalletLabels() {
-        // Código para configurar os labels da carteira de saldo aqui
+    // MARK: - setupButtons
+    func setupButtons() {
+        // Implementar a funcionalidade de configurar os botões
     }
     
-    public func setupButtons() {
-        // Código para configurar os botões aqui
+    // MARK: - handleShowKeyboard
+    func handleShowKeyboard(notification: Notification) {
+        // Implementar a funcionalidade de lidar com a exibição do teclado
     }
     
-    @objc func buttonTapped(sender: UIButton) {
-        guard let user = balanceViewModel,
-              let currency = exchangeModel?.coin,
-              let coinSell = currency.sell,
-              let viewExchangeModel = exchangeModel,
-              let coinSigla = viewExchangeModel.coin.sigla,
-              let stringInputAmount = exchangeView?.amountLabel.text,
-              let intInputAmount = Int(stringInputAmount) else { return }
-
-        let coinName = viewExchangeModel.coin.name
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "BRL"
-        let total = String(formatter.string(from: NSNumber(value: (coinSell)*(Double(intInputAmount))))!)
-
-        switch sender {
-        case exchangeView?.sellButton:
-                user.transactions("sell", quantity: intInputAmount, coinSigla, currency)
-                message = "Parabéns!\nVocê acabou de vender\n\(intInputAmount) \(coinSigla) - \(coinName),\n totalizando\n\(total)"
-                buyAndSellNavigation(title: "Venda")
-        case exchangeView?.buyButton:
-                user.transactions("buy", quantity: intInputAmount, coinSigla, currency)
-                message = "Parabéns!\nVocê acabou de\ncomprar \(intInputAmount) \(coinSigla) - \n\(coinName), totalizando\n\(total)"
-                buyAndSellNavigation(title: "Compra")
-            default:
-                break
-        }
-
-        exchangeView?.balanceLabel.text = "Saldo disponível: \(user.balanceLabelFormated)"
-        exchangeView?.cashierLabel.text = "\(String(user.userWallet[coinSigla] ?? 0)) \(coinName) em caixa"
+    // MARK: - handleHideKeyboard
+    func handleHideKeyboard(notification: Notification) {
+        // Implementar a funcionalidade de lidar com a ocultação do teclado
     }
-    
-    // MARK: - @objc textFieldDidChange
-    @objc private func textFieldDidChange(textField: UITextField) {
-        guard let balance = balanceViewModel,
-              let coinBuy = exchangeModel?.coin.buy,
-              let amountLabelText = exchangeView?.amountLabel.text,
-              let amountTextInt = Int(amountLabelText),
-              let coinSigla = exchangeModel?.coin.sigla,
-              let wallet = balance.userWallet[coinSigla],
-              let amountTextDouble = Double(amountLabelText) else { return }
-        
-        let balanceDividedByPurchase = (balance.balance ) / (coinBuy)
-        let sellPrice = exchangeModel?.coin.sell ?? 0
-        
-        if amountLabelText == "" {
-            exchangeView?.buyButton.isEnabled = false
-            exchangeView?.sellButton.isEnabled = false
-        } else {
-            exchangeView?.buyButton.isEnabled = true
-            exchangeView?.sellButton.isEnabled = true
-        }
-        
-        if amountTextDouble > balanceDividedByPurchase {
-            exchangeView?.buyButton.isEnabled = false
-        }
-        
-        if amountTextInt > wallet {
-            exchangeView?.sellButton.isEnabled = false
-        }
-        
-        if sellPrice <= 0 {
-            exchangeView?.sellButton.isEnabled = false
-        }
-        
-    }
-    
 }
 
 
