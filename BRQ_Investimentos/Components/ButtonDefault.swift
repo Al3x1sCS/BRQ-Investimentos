@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-//TODO: tem varias coisas espalhadas, juntar tudo que for responsabilidade do initDefault e analisar a posibilidade de adicionar mais parametros no inits ou ate mesmo criar mais inits para mais tipos de botões
+
 class ButtonDefault: UIButton {
     init(title: String) {
         super.init(frame: .zero)
