@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//TODO: - LIMPAR APP DELEGATE
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
