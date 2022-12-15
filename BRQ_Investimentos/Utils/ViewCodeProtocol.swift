@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//TODO: avaliar a utilização do addictionalConfiguration para delegar a cor do tabbar e etc...
+
 protocol ViewCodeProtocol: UIView {
     func buildViewHierachy()
     func setupConstraints()
