@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-protocol HomeModelProtocol {
-    func updateView()
-}
-
 class HomeViewModel {
     
     let service = HGFinanceService()

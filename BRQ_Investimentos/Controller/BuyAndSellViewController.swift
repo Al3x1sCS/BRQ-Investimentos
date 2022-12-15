@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol BuyAndSellProtocol {
-    func currency(user: BalanceViewModel)
-}
-
 class BuyAndSellViewController: BaseViewController {
     
     // MARK: - attributes
