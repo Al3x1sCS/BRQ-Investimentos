@@ -18,9 +18,8 @@ class HomeViewController: BaseViewController {
 
     var exchangeVC = ExchangeViewController()
     var buyAndSellVC = BuyAndSellViewController()
-    
     var homeViewModel: HomeViewModel?
-    var viewExchangeModel: ExchangeModel?
+    var homeCoordinator: HomeCoordinator?
     
     // MARK: - loadView
     override func loadView() {
@@ -31,6 +30,7 @@ class HomeViewController: BaseViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        homeCoordinator = HomeCoordinator(navigationController: self.navigationController!)
         setDelegates()
     }
     
@@ -80,9 +80,9 @@ extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let coin = homeViewModel?.coins[indexPath.row] {
-            exchangeVC.viewExchangeModel = ExchangeModel(coin: coin)
+            exchangeVC.exchangeModel = ExchangeModel(coin: coin)
         }
-        self.navigationController?.pushViewController(exchangeVC, animated: true)
+        homeCoordinator?.navigateToExchangeViewController(exchangeVC)
     }
     
 }

@@ -18,7 +18,12 @@ class  HomeCoordinator : Coordinator {
     func start() {
         let viewController = HomeViewController()
         
+        viewController.homeCoordinator = self
+        
         self.navigationController.pushViewController(viewController, animated: true)
     }
-    
+
+    func navigateToExchangeViewController(_ exchangeViewController: ExchangeViewController) {
+        self.navigationController.pushViewController(exchangeViewController, animated: true)
+    }
 }
