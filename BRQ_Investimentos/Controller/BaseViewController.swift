@@ -53,9 +53,8 @@ extension UITextField {
         self.attributedPlaceholder = NSAttributedString(string: self.placeholder!, attributes: [NSAttributedString.Key.foregroundColor : color])
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldDidBeginEditing(_ textField: UITextField){
       textField.resignFirstResponder()
-      return true
     }
     
 }
