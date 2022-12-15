@@ -16,7 +16,7 @@ class ExchangeViewController: BaseViewController {
         return view
     }()
     
-    var exchangeModel: ExchangeModel?
+    var exchangeModel: CoinModel?
     var balanceModel: BalanceViewModel?
     var exchangeViewModel: ExchangeViewModel?
     

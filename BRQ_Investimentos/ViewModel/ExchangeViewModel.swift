@@ -11,12 +11,12 @@ import UIKit
 class ExchangeViewModel {
     
     private var exchangeView: ExchangeView
-    var exchangeModel: ExchangeModel
+    var exchangeModel: CoinModel
     private var balanceModel: BalanceViewModel?
     private var navigationController: UINavigationController?
     private var message: String?
     
-    init(_ exchangeView: ExchangeView, _ viewExchangeModel: ExchangeModel, balanceModel: BalanceViewModel = BalanceViewModel() ,_ navigationController: UINavigationController?) {
+    init(_ exchangeView: ExchangeView, _ viewExchangeModel: CoinModel, balanceModel: BalanceViewModel = BalanceViewModel() ,_ navigationController: UINavigationController?) {
         self.exchangeView = exchangeView
         self.exchangeModel = viewExchangeModel
         self.balanceModel = balanceModel
@@ -27,7 +27,7 @@ class ExchangeViewModel {
         exchangeView.amountLabel.text = ""
     }
     
-    public func settingStackViewLabels(currency: ExchangeModel) {
+    public func settingStackViewLabels(currency: CoinModel) {
         exchangeView.currencyLabel.text = "\(currency.sigla) - \(currency.name)"
         exchangeView.variationLabel.text = "\(String(format: "%.2f", currency.variation))%"
         exchangeView.purchaseLabel.text = "Compra: \(Utils.coinFormatter(number: currency.buy))"

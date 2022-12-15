@@ -57,14 +57,27 @@ class HomeViewModel {
     public func variationColor(indexPath: Int) -> UIColor {
         
         let variation = self.getVariation(index: indexPath)
-            
-            if variation > 0 {
-                return .variationGreen()
-            } else if variation < 0 {
-                return .variationRed()
-            } else {
-                return UIColor.white
-            }
+        
+        if variation > 0 {
+            return .variationGreen()
+        } else if variation < 0 {
+            return .variationRed()
+        } else {
+            return UIColor.white
+        }
+    }
+    
+    public func variationImage(indexPath: Int) -> UIImage {
+        
+        let variation = self.getVariation(index: indexPath)
+        
+        if variation > 0 {
+            return UIImage(named: "arrowUp")!
+        } else if variation < 0 {
+            return UIImage(named: "arrowDown")!
+        } else {
+            return UIImage(named: "stabilized")!
+        }
     }
     
     public var numberOfItems: Int {

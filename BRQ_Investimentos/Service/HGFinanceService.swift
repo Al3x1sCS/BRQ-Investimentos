@@ -10,7 +10,7 @@ import Alamofire
 
 class HGFinanceService: ExchangeServiceDelegate {
     func getData(completion: @escaping completion<Welcome?>) {
-        let baseUrl = "https://api.hgbrasil.com/finance?key=a6cb5965"
+        let baseUrl = "https://api.hgbrasil.com/finance?key=9916381d"
         
         AF.request(baseUrl, method: .get).validate().responseDecodable(of: Welcome.self) { response in
             debugPrint(response)
@@ -22,12 +22,12 @@ class HGFinanceService: ExchangeServiceDelegate {
             case .success(let success):
                 print("SUCCESS -> \(#function)")
                 completion(success, nil)
-            case .failure(_):
-                print("ERROR -> \(#function)")
-                //TODO: bela tratativa de erro parabains, devo estudar mais sobre tratar erros de api
-                completion(nil, nil)
+            case .failure(let error):
+                print("FAIL -> \(error)")
+                completion(nil, error)
                 
             }
         }
     }
 }
+

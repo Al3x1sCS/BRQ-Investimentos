@@ -69,6 +69,8 @@ extension HomeViewController: UICollectionViewDataSource {
         }
         
         cell.variationLabel.textColor = homeViewModel?.variationColor(indexPath: indexPath.row)
+        cell.variationImageView.image = homeViewModel?.variationImage(indexPath: indexPath.row)
+
         
         return cell
     }
@@ -80,7 +82,7 @@ extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let coin = homeViewModel?.coins[indexPath.row] {
-            exchangeVC.exchangeModel = ExchangeModel(coin: coin)
+            exchangeVC.exchangeModel = CoinModel(currency: coin)
         }
         homeCoordinator?.navigateToExchangeViewController(exchangeVC)
     }

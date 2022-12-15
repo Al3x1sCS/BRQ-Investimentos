@@ -8,7 +8,7 @@
 import Foundation
 
 protocol GenericService: AnyObject{
-    typealias completion <T> = (_ result: T,_ failure: Error?) -> Void
+    typealias completion <T> = (_ result: T,_ failure: Any?) -> Void
 }
 
 protocol ExchangeServiceDelegate: GenericService{
