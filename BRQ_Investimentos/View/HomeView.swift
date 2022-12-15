@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//TODO: mudar para o novo padrão de view que aprendi
+
 class HomeView: UIView , ViewCodeProtocol {
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())

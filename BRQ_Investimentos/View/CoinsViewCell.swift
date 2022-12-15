@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//TODO: mudar para o novo padrão de view que aprendi tambem3
+
 class CoinsViewCell: UICollectionViewCell, ViewCodeProtocol {
     
     // MARK: - Labels
@@ -17,10 +17,7 @@ class CoinsViewCell: UICollectionViewCell, ViewCodeProtocol {
     // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupView()
-        //TODO: nao precisa ja esta no setupView()
-        addictionalConfiguration()
     }
 
     required init?(coder: NSCoder) {

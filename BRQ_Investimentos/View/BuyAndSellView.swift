@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//TODO: mudar para o novo padrão de view que aprendi tambem4
+
 class BuyAndSellView: UIView, ViewCodeProtocol {
     
     // MARK: - Label

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//TODO: mudar para o novo padrão de view que aprendi tambem
+
 class ExchangeView: UIView, ViewCodeProtocol {
     
     // MARK: - StackView
