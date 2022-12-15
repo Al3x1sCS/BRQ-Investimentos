@@ -34,25 +34,33 @@ class BalanceViewModel {
         }
         self.userWallet = wallet
     }
-    
-    func transactions(_ operation: String, quantity: Int, _ currencyIso: String, _ currency: Coins) {
-        guard let currencyAmount = userWallet[currencyIso],
-              let sellCoinPrice = currency.sell,
-              let buyCoinPrice = currency.buy else { return }
-        
-        let sellPrice = sellCoinPrice * Double(quantity)
-        let price = buyCoinPrice * Double(quantity)
-        
-        if operation == "sell" {
-            if currencyAmount >= quantity {
-                balance += sellPrice
-                userWallet[currencyIso] = currencyAmount - quantity
-            }
-        } else {
-            if balance - price > 0 {
-                userWallet[currencyIso] = currencyAmount + quantity
-                balance -= price
-            }
+    /// Esta função realiza transações de compra ou venda de uma determinada moeda
+    /// em sua carteira de usuário. Ele recebe uma operação ("sell" ou "buy"), uma
+    /// quantidade, seu código ISO e uma moeda.
+    /// - Parameters:
+    ///   - operation: A operação a ser realizada. Deve ser "buy" para comprar ou "sell" para vender.
+    ///   - quantity: A quantidade de moedas a ser comprada ou vendida.
+    ///   - currencyIso: O código ISO da moeda a ser comprada ou vendida.
+    ///   - currency: As informações da moeda a ser comprada ou vendida.
+    func transactions(operation: String, quantity: Int, _ currencyIso: String, _ currency: Coins) {
+        guard let walletAmount = userWallet[currencyIso],
+              let sellPrice = currency.sell,
+              let buyPrice = currency.buy else { return }
+
+        let totalSellPrice = sellPrice * Double(quantity)
+        let totalBuyPrice = buyPrice * Double(quantity)
+
+        switch operation {
+        case "sell":
+            guard walletAmount >= quantity else { return }
+            balance += totalSellPrice
+            userWallet[currencyIso] = walletAmount - quantity
+        case "buy":
+            guard balance - totalBuyPrice > 0 else { return }
+            userWallet[currencyIso] = walletAmount + quantity
+            balance -= totalBuyPrice
+        default:
+            break
         }
     }
     

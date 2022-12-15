@@ -10,124 +10,131 @@ import UIKit
 
 class ExchangeViewModel {
     
-    // MARK: - attributes
-    var viewExchangeModel: ExchangeModel?
-    var balanceModel: BalanceViewModel?
-    var message: String?
+    private var exchangeView: ExchangeView
+    var exchangeModel: ExchangeModel
+    private var balanceModel: BalanceViewModel?
+    private var navigationController: UINavigationController?
+    private var message: String?
     
-    // MARK: - Initialization
-    init(viewExchangeModel: ExchangeModel?, balanceModel: BalanceViewModel?, message: String?) {
-        self.viewExchangeModel = viewExchangeModel
+    init(_ exchangeView: ExchangeView, _ viewExchangeModel: ExchangeModel, balanceModel: BalanceViewModel = BalanceViewModel() ,_ navigationController: UINavigationController?) {
+        self.exchangeView = exchangeView
+        self.exchangeModel = viewExchangeModel
         self.balanceModel = balanceModel
-        self.message = message
+        self.navigationController = navigationController
     }
     
-    // MARK: - setTargets
-    func setTargets() {
-        // Implementar a funcionalidade de adicionar targets aos botões e text field
+    public func setAmountLabelText() {
+        exchangeView.amountLabel.text = ""
     }
     
-    // MARK: - buyAndSellNavigation
-    func buyAndSellNavigation(title: String) {
-        // Implementar a funcionalidade de navegação para a tela de compra e venda
+    public func settingStackViewLabels(currency: ExchangeModel) {
+        exchangeView.currencyLabel.text = "\(currency.sigla) - \(currency.name)"
+        exchangeView.variationLabel.text = "\(String(format: "%.2f", currency.variation))%"
+        exchangeView.purchaseLabel.text = "Compra: \(Utils.coinFormatter(number: currency.buy))"
+        exchangeView.saleLabel.text = "Venda: \(Utils.coinFormatter(number: currency.sell))"
+        exchangeView.balanceLabel.text = "Saldo disponível: \(balanceModel?.balanceLabelFormated ?? "")"
+        exchangeView.cashierLabel.text = "\(balanceModel?.userWallet[currency.coin.sigla ?? ""] ?? 0) \(currency.coin.name) em caixa"
+        
+        switch currency.variation {
+        case let total where total > 0:
+            exchangeView.variationLabel.textColor = .variationGreen()
+        case let total where total < 0:
+            exchangeView.variationLabel.textColor = .variationRed()
+        default:
+            exchangeView.variationLabel.textColor = .white
+        }
     }
     
-    // MARK: - setAmountLabelText
-    func setAmountLabelText() {
-        // Implementar a funcionalidade de definir o texto do amountLabel
+    public func updateButtonsState() {
+        guard let user = balanceModel,
+              let coinSigla = exchangeModel.coin.sigla,
+              let wallet = user.userWallet[coinSigla] else { return }
+
+        let sellButton = exchangeView.sellButton
+        sellButton.isEnabled = false
+        
+        let buyButton = exchangeView.buyButton
+        buyButton.isEnabled = false
+
+        guard wallet > 0 else {
+            sellButton.isEnabled = false
+            return
+        }
+
+        guard balanceModel?.balance ?? 0 > 0 else {
+            buyButton.isEnabled = false
+            return
+        }
     }
     
-    // MARK: - settingStackViewLabels
-    func settingStackViewLabels() {
-        // Implementar a funcionalidade de definir os labels da stack view
+    public func setTargets() {
+        exchangeView.sellButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        exchangeView.buyButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        exchangeView.amountLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
-    // MARK: - settingBalanceWalletLabels
-    func settingBalanceWalletLabels() {
-        // Implementar a funcionalidade de definir os labels do balance wallet
+    private func buyAndSellNavigation(title: String) {
+        let viewController = BuyAndSellViewController()
+        viewController.setupNavigation(with: title)
+        viewController.message = message
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
-    // MARK: - setupButtons
-    func setupButtons() {
-        // Implementar a funcionalidade de configurar os botões
+    @objc private func buttonTapped(sender: UIButton) {
+        let coin = exchangeModel.coin
+        
+        guard let user = balanceModel,
+              let coinSell = coin.sell,
+              let coinSigla = exchangeModel.coin.sigla,
+              let inputAmount = exchangeView.amountLabel.text,
+              let amount = Int(inputAmount) else { return }
+
+        let coinName = exchangeModel.coin.name
+        let total = Utils.coinFormatter(number: (coinSell)*(Double(amount)))
+
+        switch sender {
+            case exchangeView.sellButton:
+            user.transactions(operation: "sell", quantity: amount, coinSigla, coin)
+                message = "Parabéns!\nVocê acabou de vender\n\(amount) \(coinSigla) - \(coinName),\n totalizando\n\(total)"
+                buyAndSellNavigation(title: "Venda")
+            case exchangeView.buyButton:
+            user.transactions(operation: "buy", quantity: amount, coinSigla, coin)
+                message = "Parabéns!\nVocê acabou de\ncomprar \(amount) \(coinSigla) - \n\(coinName), totalizando\n\(total)"
+                buyAndSellNavigation(title: "Compra")
+            default:
+                break
+        }
+
+        exchangeView.balanceLabel.text = "Saldo disponível: \(user.balanceLabelFormated)"
+        exchangeView.cashierLabel.text = "\(String(user.userWallet[coinSigla] ?? 0)) \(coinName) em caixa"
     }
     
-    // MARK: - handleShowKeyboard
-    func handleShowKeyboard(notification: Notification) {
-        // Implementar a funcionalidade de lidar com a exibição do teclado
+    @objc private func textFieldDidChange(textField: UITextField) {
+        guard let balance = balanceModel,
+              let coinBuy = exchangeModel.coin.buy,
+              let amountLabelText = exchangeView.amountLabel.text,
+              let amountTextInt = Int(amountLabelText),
+              let coinSigla = exchangeModel.coin.sigla,
+              let wallet = balance.userWallet[coinSigla],
+              let amountTextDouble = Double(amountLabelText) else { return }
+        
+        let balanceDividedByPurchase = (balance.balance ) / (coinBuy)
+        let sellPrice = exchangeModel.coin.sell ?? 0
+        
+        switch true {
+            case amountLabelText == "":
+                exchangeView.buyButton.isEnabled = false
+                exchangeView.sellButton.isEnabled = false
+            case amountTextDouble > balanceDividedByPurchase:
+                exchangeView.buyButton.isEnabled = false
+            case amountTextInt > wallet:
+                exchangeView.sellButton.isEnabled = false
+            case sellPrice <= 0:
+                exchangeView.sellButton.isEnabled = false
+            default:
+                exchangeView.buyButton.isEnabled = true
+                exchangeView.sellButton.isEnabled = true
+        }
     }
     
-    // MARK: - handleHideKeyboard
-    func handleHideKeyboard(notification: Notification) {
-        // Implementar a funcionalidade de lidar com a ocultação do teclado
-    }
 }
-
-
-// ESTE CODIGO É MUITO MAIS ROBUSTO MAS EU PRECISO APRENDER MAIS PARA APLICALO
-//protocol ExchangeViewModelDelegate: AnyObject {
-//    func didTapBuyButton()
-//    func didTapSellButton()
-//    func didChangeAmountText(to text: String)
-//}
-//
-//class ExchangeViewModel {
-//
-//    // MARK: - attributes
-//    weak var delegate: ExchangeViewModelDelegate?
-//    var exchangeModel: ExchangeModel?
-//
-//    // MARK: - init
-//    init(exchangeModel: ExchangeModel?) {
-//        self.exchangeModel = exchangeModel
-//    }
-//
-//    // MARK: - setTargets
-//    func setTargets(on buyButton: UIButton, sellButton: UIButton, amountLabel: UITextField) {
-//        buyButton.addTarget(self, action: #selector(didTapBuyButton), for: .touchUpInside)
-//        sellButton.addTarget(self, action: #selector(didTapSellButton), for: .touchUpInside)
-//        amountLabel.addTarget(self, action: #selector(didChangeAmountText), for: .editingChanged)
-//    }
-//
-//    // MARK: - didTapBuyButton
-//    @objc func didTapBuyButton() {
-//        delegate?.didTapBuyButton()
-//    }
-//
-//    // MARK: - didTapSellButton
-//    @objc func didTapSellButton() {
-//        delegate?.didTapSellButton()
-//    }
-//
-//    // MARK: - didChangeAmountText
-//    @objc func didChangeAmountText(textField: UITextField) {
-//        delegate?.didChangeAmountText(to: textField.text ?? "")
-//    }
-//
-//    // MARK: - setupStackViewLabels
-//    func setupStackViewLabels(currencyLabel: UILabel, variationLabel: UILabel, purchaseLabel: UILabel, saleLabel: UILabel) {
-//        guard let currency = exchangeModel?.coin,
-//              let currencyBuy = currency.buy,
-//              let exchangeModel = exchangeModel,
-//              let coinSigla = exchangeModel.coin.sigla else { return }
-//
-//        let coinName = exchangeModel.coin.name
-//        let coinVariation = currency.variation
-//        let currencySell = currency.sell ?? 0
-//
-//        currencyLabel.text = "\(coinSigla) - \(coinName)"
-//        variationLabel.text = "\(String(format: "%.2f", coinVariation))%"
-//        purchaseLabel.text = "Compra: R$ \(currencyBuy)"
-//        saleLabel.text = "Venda: R$ \(currencySell)"
-//
-//        if currency.variation < 0 {
-//            variationLabel.textColor = .variationRed()
-//        } else if currency.variation > 0 {
-//            variationLabel.textColor = .variationGreen()
-//        } else {
-//            variationLabel.textColor = .white
-//        }
-//    }
-//
-//}
-
