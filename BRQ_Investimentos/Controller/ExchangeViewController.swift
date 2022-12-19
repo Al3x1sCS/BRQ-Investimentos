@@ -46,7 +46,7 @@ class ExchangeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let exchangeModel = exchangeModel {
-            exchangeViewModel?.exchangeModel = exchangeModel
+            exchangeViewModel?.coinModel = exchangeModel
         }
         
     }

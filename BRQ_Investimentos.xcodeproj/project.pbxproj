@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE01A1AC28FECF6A00F81A83 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01A1AB28FECF6A00F81A83 /* HomeViewController.swift */; };
-		CE01A1AE28FED16500F81A83 /* ConstraintsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01A1AD28FED16500F81A83 /* ConstraintsUtils.swift */; };
+		CE01A1AE28FED16500F81A83 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01A1AD28FED16500F81A83 /* UIView+Extensions.swift */; };
 		CE01A1B028FEDBC000F81A83 /* CoinsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01A1AF28FEDBC000F81A83 /* CoinsViewCell.swift */; };
 		CE01A1B228FF174800F81A83 /* ViewCodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01A1B128FF174800F81A83 /* ViewCodeProtocol.swift */; };
 		CE01A1B428FF191000F81A83 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01A1B328FF191000F81A83 /* HomeView.swift */; };
@@ -17,7 +17,7 @@
 		CE095184290814CE0065B81E /* BuyAndSellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE095183290814CE0065B81E /* BuyAndSellView.swift */; };
 		CE0B981E2906D7BF00E4403C /* ServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0B981D2906D7BF00E4403C /* ServiceProtocol.swift */; };
 		CE0B98202906E29200E4403C /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0B981F2906E29200E4403C /* CoinModel.swift */; };
-		CE1EFC5B294B708500332887 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1EFC5A294B708500332887 /* TextFieldExtension.swift */; };
+		CE1EFC5B294B708500332887 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1EFC5A294B708500332887 /* UITextField+Extensions.swift */; };
 		CE1EFC5F294BBC4D00332887 /* HomeModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1EFC5E294BBC4D00332887 /* HomeModelProtocol.swift */; };
 		CE1EFC61294BBF1100332887 /* BuyAndSellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1EFC60294BBF1100332887 /* BuyAndSellProtocol.swift */; };
 		CE24B1662931140400A1BC2B /* LabelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE24B1652931140400A1BC2B /* LabelDefault.swift */; };
@@ -29,7 +29,7 @@
 		CE293D1528FDAD480059BD73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE293D1328FDAD480059BD73 /* LaunchScreen.storyboard */; };
 		CE2EFAC2290C073300064516 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2EFAC1290C073300064516 /* HomeViewModel.swift */; };
 		CE3EBAC7294A7C3100C1BDF6 /* StaticFuncUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3EBAC6294A7C3100C1BDF6 /* StaticFuncUtils.swift */; };
-		CE59F350290028EF004CC7BA /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59F34F290028EF004CC7BA /* Theme.swift */; };
+		CE59F350290028EF004CC7BA /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59F34F290028EF004CC7BA /* UIColor+Extensions.swift */; };
 		CE6A8C242931519E00551D22 /* Arial Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE6A8C232931519E00551D22 /* Arial Black.ttf */; };
 		CE7607602945132A00B197BE /* KeyboardManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76075F2945132A00B197BE /* KeyboardManeger.swift */; };
 		CE760762294521B000B197BE /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE760761294521B000B197BE /* ExchangeViewModel.swift */; };
@@ -48,7 +48,7 @@
 		829E96BAA4A4A8CCAD2BA197 /* Pods_BRQ_Investimentos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BRQ_Investimentos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C88E80FC21B0FFDE2EB41EC /* Pods-BRQ_Investimentos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRQ_Investimentos.debug.xcconfig"; path = "Target Support Files/Pods-BRQ_Investimentos/Pods-BRQ_Investimentos.debug.xcconfig"; sourceTree = "<group>"; };
 		CE01A1AB28FECF6A00F81A83 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		CE01A1AD28FED16500F81A83 /* ConstraintsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintsUtils.swift; sourceTree = "<group>"; };
+		CE01A1AD28FED16500F81A83 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		CE01A1AF28FEDBC000F81A83 /* CoinsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsViewCell.swift; sourceTree = "<group>"; };
 		CE01A1B128FF174800F81A83 /* ViewCodeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodeProtocol.swift; sourceTree = "<group>"; };
 		CE01A1B328FF191000F81A83 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 		CE095183290814CE0065B81E /* BuyAndSellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyAndSellView.swift; sourceTree = "<group>"; };
 		CE0B981D2906D7BF00E4403C /* ServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocol.swift; sourceTree = "<group>"; };
 		CE0B981F2906E29200E4403C /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
-		CE1EFC5A294B708500332887 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
+		CE1EFC5A294B708500332887 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		CE1EFC5E294BBC4D00332887 /* HomeModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModelProtocol.swift; sourceTree = "<group>"; };
 		CE1EFC60294BBF1100332887 /* BuyAndSellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyAndSellProtocol.swift; sourceTree = "<group>"; };
 		CE24B1652931140400A1BC2B /* LabelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDefault.swift; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		CE293D1628FDAD480059BD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE2EFAC1290C073300064516 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CE3EBAC6294A7C3100C1BDF6 /* StaticFuncUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticFuncUtils.swift; sourceTree = "<group>"; };
-		CE59F34F290028EF004CC7BA /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		CE59F34F290028EF004CC7BA /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		CE6A8C232931519E00551D22 /* Arial Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arial Black.ttf"; sourceTree = "<group>"; };
 		CE76075F2945132A00B197BE /* KeyboardManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManeger.swift; sourceTree = "<group>"; };
 		CE760761294521B000B197BE /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
@@ -174,9 +174,9 @@
 		CE1EFC5D294BBB9300332887 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CE01A1AD28FED16500F81A83 /* ConstraintsUtils.swift */,
-				CE1EFC5A294B708500332887 /* TextFieldExtension.swift */,
-				CE59F34F290028EF004CC7BA /* Theme.swift */,
+				CE01A1AD28FED16500F81A83 /* UIView+Extensions.swift */,
+				CE1EFC5A294B708500332887 /* UITextField+Extensions.swift */,
+				CE59F34F290028EF004CC7BA /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -387,13 +387,13 @@
 				CE0B98202906E29200E4403C /* CoinModel.swift in Sources */,
 				CE7A3EE92934FF75003B7A39 /* TextFieldDefault.swift in Sources */,
 				CE1EFC5F294BBC4D00332887 /* HomeModelProtocol.swift in Sources */,
-				CE01A1AE28FED16500F81A83 /* ConstraintsUtils.swift in Sources */,
+				CE01A1AE28FED16500F81A83 /* UIView+Extensions.swift in Sources */,
 				CE01A1AC28FECF6A00F81A83 /* HomeViewController.swift in Sources */,
-				CE59F350290028EF004CC7BA /* Theme.swift in Sources */,
+				CE59F350290028EF004CC7BA /* UIColor+Extensions.swift in Sources */,
 				CE293D0928FDAD450059BD73 /* AppDelegate.swift in Sources */,
 				CE01A1B228FF174800F81A83 /* ViewCodeProtocol.swift in Sources */,
 				CEAA726E29047E670092A9A1 /* HGFinanceService.swift in Sources */,
-				CE1EFC5B294B708500332887 /* TextFieldExtension.swift in Sources */,
+				CE1EFC5B294B708500332887 /* UITextField+Extensions.swift in Sources */,
 				CE0B981E2906D7BF00E4403C /* ServiceProtocol.swift in Sources */,
 				CE01A1B428FF191000F81A83 /* HomeView.swift in Sources */,
 				CE7607602945132A00B197BE /* KeyboardManeger.swift in Sources */,

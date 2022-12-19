@@ -1,5 +1,5 @@
 //
-//  CurrenciesModel.swift
+//  HGFinanceModel.swift
 //  BRQ_Investimentos
 //
 //  Created by user on 19/10/22.

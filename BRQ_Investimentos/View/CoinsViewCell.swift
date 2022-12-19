@@ -1,5 +1,5 @@
 //
-//  CoinCell.swift
+//  CoinsViewCell.swift
 //  BRQ_Investimentos
 //
 //  Created by user on 18/10/22.

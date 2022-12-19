@@ -11,14 +11,14 @@ import UIKit
 class ExchangeViewModel {
     
     private var exchangeView: ExchangeView
-    var exchangeModel: CoinModel
+    var coinModel: CoinModel
     private var balanceModel: BalanceViewModel?
     private var navigationController: UINavigationController?
     private var message: String?
     
     init(_ exchangeView: ExchangeView, _ viewExchangeModel: CoinModel, balanceModel: BalanceViewModel = BalanceViewModel() ,_ navigationController: UINavigationController?) {
         self.exchangeView = exchangeView
-        self.exchangeModel = viewExchangeModel
+        self.coinModel = viewExchangeModel
         self.balanceModel = balanceModel
         self.navigationController = navigationController
     }
@@ -47,7 +47,7 @@ class ExchangeViewModel {
     
     public func updateButtonsState() {
         guard let user = balanceModel,
-              let coinSigla = exchangeModel.coin.sigla,
+              let coinSigla = coinModel.coin.sigla,
               let wallet = user.userWallet[coinSigla] else { return }
 
         let sellButton = exchangeView.sellButton
@@ -81,24 +81,26 @@ class ExchangeViewModel {
     }
     
     @objc private func buttonTapped(sender: UIButton) {
-        let coin = exchangeModel.coin
+        let currency = coinModel.coin
         
         guard let user = balanceModel,
-              let coinSell = coin.sell,
-              let coinSigla = exchangeModel.coin.sigla,
+              let coinSell = currency.sell,
+              let coinSigla = coinModel.coin.sigla,
               let inputAmount = exchangeView.amountLabel.text,
               let amount = Int(inputAmount) else { return }
 
-        let coinName = exchangeModel.coin.name
+        let coinName = coinModel.coin.name
         let total = Utils.coinFormatter(number: (coinSell)*(Double(amount)))
+        let userWalletValue = user.userWallet[coinSigla]
+        let userWalletString = userWalletValue != nil ? String(userWalletValue!) : "0"
 
         switch sender {
             case exchangeView.sellButton:
-            user.transactions(operation: "sell", quantity: amount, coinSigla, coin)
+            user.transactions(operation: "sell", quantity: amount, coinSigla, currency)
                 message = "Parabéns!\nVocê acabou de vender\n\(amount) \(coinSigla) - \(coinName),\n totalizando\n\(total)"
                 buyAndSellNavigation(title: "Venda")
             case exchangeView.buyButton:
-            user.transactions(operation: "buy", quantity: amount, coinSigla, coin)
+            user.transactions(operation: "buy", quantity: amount, coinSigla, currency)
                 message = "Parabéns!\nVocê acabou de\ncomprar \(amount) \(coinSigla) - \n\(coinName), totalizando\n\(total)"
                 buyAndSellNavigation(title: "Compra")
             default:
@@ -106,20 +108,20 @@ class ExchangeViewModel {
         }
 
         exchangeView.balanceLabel.text = "Saldo disponível: \(user.balanceLabelFormated)"
-        exchangeView.cashierLabel.text = "\(String(user.userWallet[coinSigla] ?? 0)) \(coinName) em caixa"
+        exchangeView.cashierLabel.text = "\(userWalletString) \(coinName) em caixa"
     }
     
     @objc private func textFieldDidChange(textField: UITextField) {
         guard let balance = balanceModel,
-              let coinBuy = exchangeModel.coin.buy,
+              let coinBuy = coinModel.coin.buy,
               let amountLabelText = exchangeView.amountLabel.text,
               let amountTextInt = Int(amountLabelText),
-              let coinSigla = exchangeModel.coin.sigla,
+              let coinSigla = coinModel.coin.sigla,
               let wallet = balance.userWallet[coinSigla],
               let amountTextDouble = Double(amountLabelText) else { return }
         
         let balanceDividedByPurchase = (balance.balance ) / (coinBuy)
-        let sellPrice = exchangeModel.coin.sell ?? 0
+        let sellPrice = coinModel.coin.sell ?? 0
         
         switch true {
             case amountLabelText == "":
