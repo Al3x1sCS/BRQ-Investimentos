@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-class HomeViewModel {
-    
+class HomeViewModel: HomeModelProtocol {
     let service = HGFinanceService()
     var coins: [Coins] = []
     var delegate: HomeModelProtocol?
@@ -82,6 +81,10 @@ class HomeViewModel {
     
     public func loadCurrentCoin(indexPath: IndexPath) -> Coins {
         return self.coins[indexPath.row]
+    }
+    
+    func updateView() {
+        delegate?.updateView()
     }
     
 }

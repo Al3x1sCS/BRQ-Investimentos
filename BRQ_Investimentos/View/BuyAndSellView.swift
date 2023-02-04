@@ -26,22 +26,16 @@ class BuyAndSellView: UIView, ViewCodeProtocol {
         successLabel.anchor (
             top: safeAreaLayoutGuide.topAnchor,
             left: safeAreaLayoutGuide.leftAnchor,
-            bottom: nil,
             right: safeAreaLayoutGuide.rightAnchor,
             paddingTop: 175,
             paddingLeft: 24,
-            paddingBottom: 0,
             paddingRight: 24,
-            width: 0,
             height: 190
         )
         
         homeButton.anchor (
-            top: nil,
-            left: nil,
             bottom: safeAreaLayoutGuide.bottomAnchor,
             right: safeAreaLayoutGuide.rightAnchor,
-            paddingTop: 0,
             paddingLeft: 120,
             paddingBottom: 40,
             paddingRight: 120,

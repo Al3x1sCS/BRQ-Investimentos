@@ -34,7 +34,7 @@ class ExchangeViewController: BaseViewController {
         exchangeViewModel = ExchangeViewModel(exchangeView, exchangeModel!, navigationController)
         setupNavigation(with: "Câmbio")
         exchangeViewModel?.setTargets()
-        exchangeView.setupView()
+//        exchangeView.setupView()
         exchangeView.amountLabel.delegate = self
     }
     

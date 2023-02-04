@@ -116,6 +116,7 @@
 		CE01A1A628FECD0600F81A83 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CE76075F2945132A00B197BE /* KeyboardManeger.swift */,
 				CE3EBAC6294A7C3100C1BDF6 /* StaticFuncUtils.swift */,
 			);
 			path = Utils;
@@ -246,7 +247,6 @@
 				CEE3530F291942AA00E0F8A1 /* BalanceViewModel.swift */,
 				CE760761294521B000B197BE /* ExchangeViewModel.swift */,
 				CE2EFAC1290C073300064516 /* HomeViewModel.swift */,
-				CE76075F2945132A00B197BE /* KeyboardManeger.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

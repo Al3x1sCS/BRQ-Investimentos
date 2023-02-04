@@ -14,7 +14,6 @@ class HomeView: UIView , ViewCodeProtocol {
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         self.setupView()
     }
     
