@@ -85,11 +85,11 @@ class ExchangeViewModel {
         
         guard let user = balanceModel,
               let coinSell = currency.sell,
-              let coinSigla = coinModel.coin.sigla,
+              let coinSigla = currency.sigla,
               let inputAmount = exchangeView.amountLabel.text,
               let amount = Int(inputAmount) else { return }
 
-        let coinName = coinModel.coin.name
+        let coinName = currency.name
         let total = Utils.coinFormatter(number: (coinSell)*(Double(amount)))
         let userWalletValue = user.userWallet[coinSigla]
         let userWalletString = userWalletValue != nil ? String(userWalletValue!) : "0"
@@ -112,31 +112,35 @@ class ExchangeViewModel {
     }
     
     @objc private func textFieldDidChange(textField: UITextField) {
+        guard let amountLabelText = exchangeView.amountLabel.text else { return }
+        
+        if amountLabelText == "" {
+            exchangeView.buyButton.isEnabled = false
+            exchangeView.sellButton.isEnabled = false
+            return
+        }
+        
         guard let balance = balanceModel,
-              let coinBuy = coinModel.coin.buy,
-              let amountLabelText = exchangeView.amountLabel.text,
               let amountTextInt = Int(amountLabelText),
-              let coinSigla = coinModel.coin.sigla,
-              let wallet = balance.userWallet[coinSigla],
+              let wallet = balance.userWallet[coinModel.sigla],
               let amountTextDouble = Double(amountLabelText) else { return }
         
-        let balanceDividedByPurchase = (balance.balance ) / (coinBuy)
-        let sellPrice = coinModel.coin.sell ?? 0
+        let balanceDividedByPurchase = (balance.balance ) / (coinModel.buy)
         
-        switch true {
-            case amountLabelText == "":
-                exchangeView.buyButton.isEnabled = false
-                exchangeView.sellButton.isEnabled = false
-            case amountTextDouble > balanceDividedByPurchase:
-                exchangeView.buyButton.isEnabled = false
-            case amountTextInt > wallet:
-                exchangeView.sellButton.isEnabled = false
-            case sellPrice <= 0:
-                exchangeView.sellButton.isEnabled = false
-            default:
-                exchangeView.buyButton.isEnabled = true
-                exchangeView.sellButton.isEnabled = true
+        if amountTextDouble > balanceDividedByPurchase {
+            exchangeView.buyButton.isEnabled = false
+        } else {
+            exchangeView.buyButton.isEnabled = true
+        }
+        
+        if amountTextInt > wallet {
+            exchangeView.sellButton.isEnabled = false
+        } else if coinModel.sell <= 0 {
+            exchangeView.sellButton.isEnabled = false
+        } else {
+            exchangeView.sellButton.isEnabled = true
         }
     }
+
     
 }
