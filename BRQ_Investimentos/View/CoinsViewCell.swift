@@ -43,9 +43,7 @@ class CoinsViewCell: UICollectionViewCell, ViewCodeProtocol {
             paddingTop: 16,
             paddingLeft: 16,
             paddingBottom: 16,
-            paddingRight: 16,
-            width: 0,
-            height: 0
+            paddingRight: 16
         )
         
         variationLabel.anchor (
@@ -57,8 +55,7 @@ class CoinsViewCell: UICollectionViewCell, ViewCodeProtocol {
             paddingLeft: 16,
             paddingBottom: 20,
             paddingRight: 16,
-            width: 100,
-            height: 0
+            width: 100
         )
         
         variationImageView.anchor (

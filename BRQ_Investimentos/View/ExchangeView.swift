@@ -63,27 +63,20 @@ class ExchangeView: UIView, ViewCodeProtocol {
         stackView.anchor (
             top: safeAreaLayoutGuide.topAnchor,
             left: safeAreaLayoutGuide.leftAnchor,
-            bottom: nil,
             right: safeAreaLayoutGuide.rightAnchor,
             paddingTop: 24,
             paddingLeft: 24,
-            paddingBottom: 0,
             paddingRight: 24,
-            width: 0,
             height: 171
         )
         
         currencyLabel.anchor (
             top: stackView.topAnchor,
             left: stackView.leftAnchor,
-            bottom: nil,
             right: stackView.rightAnchor,
             paddingTop: 16,
             paddingLeft: 16,
-            paddingBottom: 0,
-            paddingRight: 16,
-            width: 0,
-            height: 0
+            paddingRight: 16
         )
         
         variationLabel.anchor (
@@ -93,20 +86,16 @@ class ExchangeView: UIView, ViewCodeProtocol {
             right: stackView.rightAnchor,
             paddingTop: 15,
             paddingLeft: 16,
-            paddingBottom: 0,
             paddingRight: 16,
-            width: 0,
             height: 22
         )
         
         purchaseLabel.anchor (
             top: variationLabel.bottomAnchor,
             left: stackView.leftAnchor,
-            bottom: nil,
             right: stackView.rightAnchor,
             paddingTop: 19,
             paddingLeft: 16,
-            paddingBottom: 0,
             paddingRight: 163,
             width: 148,
             height: 17
@@ -131,57 +120,40 @@ class ExchangeView: UIView, ViewCodeProtocol {
             bottom: nil, right: safeAreaLayoutGuide.rightAnchor,
             paddingTop: 32,
             paddingLeft: 24,
-            paddingBottom: 0,
-            paddingRight: 24,
-            width: 0,
-            height: 0
+            paddingRight: 24
         )
         
         cashierLabel.anchor (
             top: balanceLabel.bottomAnchor,
             left: safeAreaLayoutGuide.leftAnchor,
-            bottom: nil,
             right: safeAreaLayoutGuide.rightAnchor,
             paddingTop: 24,
             paddingLeft: 24,
-            paddingBottom: 0,
-            paddingRight: 24,
-            width: 0,
-            height: 0
+            paddingRight: 24
         )
         
         amountLabel.anchor (
             top: cashierLabel.bottomAnchor,
             left: safeAreaLayoutGuide.leftAnchor,
-            bottom: nil,
             right: safeAreaLayoutGuide.rightAnchor,
             paddingTop: 32,
             paddingLeft: 24,
-            paddingBottom: 0,
             paddingRight: 24,
-            width: 0,
             height: 54
         )
         
         sellButton.anchor (
-            top: nil,
             left: safeAreaLayoutGuide.leftAnchor,
             bottom: safeAreaLayoutGuide.bottomAnchor,
-            right: nil,
-            paddingTop: 0,
             paddingLeft: 24,
             paddingBottom: 40,
-            paddingRight: 0,
             width: 151,
             height: 43
         )
         
         buyButton.anchor (
-            top: nil,
-            left: nil,
             bottom: safeAreaLayoutGuide.bottomAnchor,
             right: safeAreaLayoutGuide.rightAnchor,
-            paddingTop: 0,
             paddingLeft: 25,
             paddingBottom: 40,
             paddingRight: 24,
