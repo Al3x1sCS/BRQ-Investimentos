@@ -40,6 +40,9 @@
 		CEA37F1C294386C900001CC3 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA37F1B294386C900001CC3 /* HomeCoordinator.swift */; };
 		CEAA726E29047E670092A9A1 /* HGFinanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA726D29047E670092A9A1 /* HGFinanceService.swift */; };
 		CEE35310291942AA00E0F8A1 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3530F291942AA00E0F8A1 /* BalanceViewModel.swift */; };
+		CEFB15FC2991475500DEFC25 /* ExchangeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB15FB2991475500DEFC25 /* ExchangeViewModelProtocol.swift */; };
+		CEFB15FE2991588C00DEFC25 /* BalanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB15FD2991588C00DEFC25 /* BalanceModel.swift */; };
+		CEFB16002991589900DEFC25 /* WalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB15FF2991589900DEFC25 /* WalletModel.swift */; };
 		FFE2343995BDA51117F8BEDB /* Pods_BRQ_Investimentos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829E96BAA4A4A8CCAD2BA197 /* Pods_BRQ_Investimentos.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +85,9 @@
 		CEA37F1B294386C900001CC3 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		CEAA726D29047E670092A9A1 /* HGFinanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HGFinanceService.swift; sourceTree = "<group>"; };
 		CEE3530F291942AA00E0F8A1 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
+		CEFB15FB2991475500DEFC25 /* ExchangeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModelProtocol.swift; sourceTree = "<group>"; };
+		CEFB15FD2991588C00DEFC25 /* BalanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceModel.swift; sourceTree = "<group>"; };
+		CEFB15FF2991589900DEFC25 /* WalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +163,8 @@
 			children = (
 				CE0B981F2906E29200E4403C /* CoinModel.swift */,
 				CE7A070E2900BABC00DD184C /* HGFinanceModel.swift */,
+				CEFB15FD2991588C00DEFC25 /* BalanceModel.swift */,
+				CEFB15FF2991589900DEFC25 /* WalletModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,6 +176,7 @@
 				CE01A1B128FF174800F81A83 /* ViewCodeProtocol.swift */,
 				CE1EFC5E294BBC4D00332887 /* HomeModelProtocol.swift */,
 				CE1EFC60294BBF1100332887 /* BuyAndSellProtocol.swift */,
+				CEFB15FB2991475500DEFC25 /* ExchangeViewModelProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -379,10 +388,13 @@
 				CE2EFAC2290C073300064516 /* HomeViewModel.swift in Sources */,
 				CE3EBAC7294A7C3100C1BDF6 /* StaticFuncUtils.swift in Sources */,
 				CE7A070F2900BABC00DD184C /* HGFinanceModel.swift in Sources */,
+				CEFB15FE2991588C00DEFC25 /* BalanceModel.swift in Sources */,
 				CE095184290814CE0065B81E /* BuyAndSellView.swift in Sources */,
 				CE26390A290207F900AB4169 /* ExchangeViewController.swift in Sources */,
 				CEA37F1C294386C900001CC3 /* HomeCoordinator.swift in Sources */,
+				CEFB15FC2991475500DEFC25 /* ExchangeViewModelProtocol.swift in Sources */,
 				CEE35310291942AA00E0F8A1 /* BalanceViewModel.swift in Sources */,
+				CEFB16002991589900DEFC25 /* WalletModel.swift in Sources */,
 				CE24B1662931140400A1BC2B /* LabelDefault.swift in Sources */,
 				CE0B98202906E29200E4403C /* CoinModel.swift in Sources */,
 				CE7A3EE92934FF75003B7A39 /* TextFieldDefault.swift in Sources */,

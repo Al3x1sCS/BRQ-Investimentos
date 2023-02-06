@@ -31,7 +31,7 @@ class ExchangeViewController: BaseViewController {
         super.viewDidLoad()
         
         balanceModel = BalanceViewModel()
-        exchangeViewModel = ExchangeViewModel(exchangeView, exchangeModel!, navigationController)
+        setupViewModel()
         setupNavigation(with: "Câmbio")
         exchangeViewModel?.setTargets()
         exchangeView.amountLabel.delegate = self
@@ -39,7 +39,7 @@ class ExchangeViewController: BaseViewController {
     
     // MARK: - viewDidAppear
     override func viewDidAppear(_ animated: Bool) {
-        SettingViewModel()
+        SettingModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,12 +58,16 @@ class ExchangeViewController: BaseViewController {
     }
     
     // MARK: setAmountLabelText
-    private func SettingViewModel() {
-        guard let currency = exchangeModel else { return }
-        
-        exchangeViewModel?.settingStackViewLabels(currency: currency)
+    private func SettingModel() {
+        guard let model = exchangeModel else { return }
+        exchangeViewModel?.settingStackViewLabels(currency: model)
         exchangeViewModel?.setAmountLabelText()
         exchangeViewModel?.updateButtonsState()
     }
+    
+    private func setupViewModel() {
+        guard let model = exchangeModel else { return }
+            exchangeViewModel = ExchangeViewModel(exchangeView: exchangeView, coinModel: model, balanceModel: balanceModel, navigationController: navigationController)
+        }
     
 }

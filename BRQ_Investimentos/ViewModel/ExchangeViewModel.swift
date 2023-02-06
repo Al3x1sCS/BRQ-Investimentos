@@ -8,20 +8,20 @@
 import Foundation
 import UIKit
 
-class ExchangeViewModel {
+class ExchangeViewModel: ExchangeViewModelProtocol {
     
-    private var exchangeView: ExchangeView
+    let exchangeView: ExchangeView
     var coinModel: CoinModel
-    private var balanceModel: BalanceViewModel?
-    private var navigationController: UINavigationController?
+    let balanceModel: BalanceViewModel?
+    let navigationController: UINavigationController?
     private var message: String?
     
-    init(_ exchangeView: ExchangeView, _ viewExchangeModel: CoinModel, balanceModel: BalanceViewModel = BalanceViewModel() ,_ navigationController: UINavigationController?) {
-        self.exchangeView = exchangeView
-        self.coinModel = viewExchangeModel
-        self.balanceModel = balanceModel
-        self.navigationController = navigationController
-    }
+    init(exchangeView: ExchangeView, coinModel: CoinModel, balanceModel: BalanceViewModel? = BalanceViewModel(), navigationController: UINavigationController?) {
+            self.exchangeView = exchangeView
+            self.coinModel = coinModel
+            self.balanceModel = balanceModel
+            self.navigationController = navigationController
+        }
     
     public func setAmountLabelText() {
         exchangeView.amountLabel.text = ""
